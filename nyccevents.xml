@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.2.0" method="upgrade">
+    <name>NYCC Events</name>
+    <creationDate>August 2016</creationDate>
+    <author>Steve Binkowski</author>
+    <authorEmail>steve@binkcms.com</authorEmail>
+    <copyright>Copyright 2016 Steve Binkowski.  All Rights Reserved.</copyright>
+    <license>Commercial License Only</license>
+    <version>0.0.5</version>
+    <description>Component to manage event registrations for NYCChess.com</description>
+
+    <install> <!-- Runs on install -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall> <!-- Runs on uninstall -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>nyccevents.php</filename>
+        <filename>controller.php</filename>
+        <folder>models</folder>
+        <folder>views</folder>
+    </files>
+
+    <administration>
+        <menu link='index.php?option=com_nyccevents'>NYCC Events</menu>
+        <files folder="admin">
+            <filename>index.html</filename>
+            <filename>nyccevents.php</filename>
+            <filename>controller.php</filename>
+            <folder>controllers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+    </administration>
+</extension>
