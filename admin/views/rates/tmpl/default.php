@@ -12,13 +12,14 @@
 defined('_JEXEC') or die('Restricted Access');
 ?>
 <h2><?php echo ucfirst($this->getName()); ?></h2>
-<form action="index.php?option=com_nyccevents&view=locations" method="post" id="adminForm" name="adminForm">
+<form action="index.php?option=com_nyccevents&view=rates" method="post" id="adminForm" name="adminForm">
   <table class="table table-striped table-hover">
     <thead>
     <tr>
       <th width="1%">##</th>
       <th width="2%"><?php echo JHtml::_('grid.checkall'); ?></th>
-      <th width="90%">Name</th>
+      <th width="70%">Name</th>
+      <th width="20%">Price</th>
       <th width="5%">Active</th>
       <th width="2%">ID</th>
     </tr>
@@ -41,12 +42,12 @@ defined('_JEXEC') or die('Restricted Access');
         </td>
         <td>
           <?php
-          $link = JRoute::_('index.php?option=com_nyccevents&task=location.edit&id=' . $row->id);
-          echo "<a href=\"{$link}\" title=\"Edit\">{$row->name}</a>";
+          $link = JRoute::_('index.php?option=com_nyccevents&task=rate.edit&id=' . $row->id);
+          echo "<a href=\"{$link}\" title=\"Edit\">{$row->label}</a>";
           ?>
         </td>
         <td align="center">
-          <?php echo JHtml::_('jgrid.published', $row->active, $i, 'locations.', true, 'cb'); ?>
+          <?php echo JHtml::_('jgrid.published', $row->active, $i, 'rates.', true, 'cb'); ?>
         </td>
         <td align="center">
           <?php echo $row->id; ?>

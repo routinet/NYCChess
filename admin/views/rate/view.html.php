@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class NyccEventsViewLocation extends JViewLegacy {
+class NyccEventsViewRate extends JViewLegacy {
   /**
    * View form
    *
@@ -53,8 +53,8 @@ class NyccEventsViewLocation extends JViewLegacy {
   protected function addToolBar() {
     $isNew = ($this->item->id == 0);
     $title = $isNew ? "New" : "Edit";
-    JToolBarHelper::title($title, 'Location');
-    JToolBarHelper::apply('location.apply', JTOOLBAR_APPLY);
-    JToolBarHelper::cancel('location.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
+    JToolBarHelper::title($title, 'Rate');
+    JToolBarHelper::apply('rate.apply', JTOOLBAR_APPLY);
+    JToolBarHelper::cancel('rate.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
   }
 }

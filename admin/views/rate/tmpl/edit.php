@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
       method="post" name="adminForm" id="adminForm">
   <div class="form-horizontal">
     <fieldset class="adminform">
-      <legend>Location Details</legend>
+      <legend>Rate Details</legend>
       <div class="row-fluid">
         <div class="span6">
           <?php foreach ($this->form->getFieldset() as $field) { ?>
@@ -28,6 +28,6 @@ defined('_JEXEC') or die('Restricted access');
       </div>
     </fieldset>
   </div>
-  <input type="hidden" name="task" value="location.edit" />
+  <input type="hidden" name="task" value="rate.edit" />
   <?php echo JHtml::_('form.token'); ?>
 </form>

@@ -11,6 +11,11 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Register the search path for objects
+JLoader::registerPrefix('NyccEventsHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers');
+JLoader::registerPrefix('NyccEventsModel', JPATH_COMPONENT_ADMINISTRATOR . '/models');
+JLoader::registerPrefix('NyccEventsTable', JPATH_COMPONENT_ADMINISTRATOR . '/tables');
+
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('NyccEvents');
 

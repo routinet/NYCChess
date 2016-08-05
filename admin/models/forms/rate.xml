@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="id" type="hidden"/>
+        <field
+                name="label"
+                type="text"
+                label="Label"
+                description="Label for the rate"
+                size="25"
+                class="inputbox"
+                default=""
+        />
+        <field
+                name="price"
+                type="number"
+                label="Price"
+                description="Price for this rate"
+                size="5"
+                class="inputbox"
+                default="0.00"
+        />
+        <field
+                name="active"
+                type="checkbox"
+                label="Active"
+                description="Is rate active?"
+                default="0"
+        />
+    </fieldset>
+</form>

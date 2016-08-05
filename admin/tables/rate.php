@@ -7,23 +7,17 @@
  * @license     Commercial License Only
  */
 
-
-// No direct access to this file
+// No direct access
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Menu View
+ * Rate Table class
  *
  * @since  0.0.1
  */
-class NyccEventsViewMenu extends JViewLegacy {
-  /**
-   * Display the default menu view
-   *
-   * @param   string  $tpl  The name of the template file to parse
-   * @since   0.0.1
-   * @return  void
-   *
-   */
+class NyccEventsTableRate extends NyccEventsTableBaseTable {
+
+  protected $_table_name = 'rates';
+  public $boolint_fields = array('active');
 
 }

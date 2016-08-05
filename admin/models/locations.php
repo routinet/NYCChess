@@ -15,22 +15,6 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class NycceventsModelLocations extends JModelList {
-  /**
-   * Method to build an SQL query to load the list data.
-   *
-   * @since  0.0.1
-   * @return      string  An SQL query
-   */
-  protected function getListQuery() {
-    // Initialize variables.
-    $db    = JFactory::getDbo();
-    $query = $db->getQuery(true);
-
-    // Create the base select statement.
-    $query->select('*')
-      ->from($db->quoteName('#__nycc_locations'));
-
-    return $query;
-  }
+class NyccEventsModelLocations extends NyccEventsModelBaseList {
+  protected $_table_name = 'locations';
 }

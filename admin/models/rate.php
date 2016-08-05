@@ -7,23 +7,13 @@
  * @license     Commercial License Only
  */
 
-
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Menu View
+ * Rate Model
  *
  * @since  0.0.1
  */
-class NyccEventsViewMenu extends JViewLegacy {
-  /**
-   * Display the default menu view
-   *
-   * @param   string  $tpl  The name of the template file to parse
-   * @since   0.0.1
-   * @return  void
-   *
-   */
-
+class NyccEventsModelRate extends NyccEventsModelBaseAdmin {
 }

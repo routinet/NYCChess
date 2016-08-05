@@ -57,7 +57,7 @@
                 default=""
         />
         <field
-                name="published"
+                name="active"
                 type="checkbox"
                 label="Active"
                 description="Is Location active?"

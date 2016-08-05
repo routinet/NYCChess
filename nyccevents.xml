@@ -41,6 +41,7 @@
             <filename>nyccevents.php</filename>
             <filename>controller.php</filename>
             <folder>controllers</folder>
+            <folder>helpers</folder>
             <folder>models</folder>
             <folder>sql</folder>
             <folder>tables</folder>

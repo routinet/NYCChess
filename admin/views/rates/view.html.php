@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class NyccEventsViewLocations extends JViewLegacy {
+class NyccEventsViewRates extends JViewLegacy {
   /**
    * Display the default menu view
    *
@@ -53,9 +53,9 @@ class NyccEventsViewLocations extends JViewLegacy {
    * @since   1.6
    */
   protected function addToolBar() {
-    JToolBarHelper::title('NYCC Events Locations');
-    JToolBarHelper::addNew('location.add');
-    JToolBarHelper::editList('location.edit');
-    JToolBarHelper::deleteList('', 'locations.delete');
+    JToolBarHelper::title('NYCC Events Rates');
+    JToolBarHelper::addNew('rate.add');
+    JToolBarHelper::editList('rate.edit');
+    JToolBarHelper::deleteList('', 'rates.delete');
   }
 }
