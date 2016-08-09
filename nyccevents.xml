@@ -6,7 +6,7 @@
     <authorEmail>steve@binkcms.com</authorEmail>
     <copyright>Copyright 2016 Steve Binkowski.  All Rights Reserved.</copyright>
     <license>Commercial License Only</license>
-    <version>0.0.5</version>
+    <version>0.0.2</version>
     <description>Component to manage event registrations for NYCChess.com</description>
 
     <install> <!-- Runs on install -->
@@ -36,6 +36,11 @@
 
     <administration>
         <menu link='index.php?option=com_nyccevents'>NYCC Events</menu>
+        <submenu>
+            <menu view="locations" alt="Locations Manager">Locations</menu>
+            <menu view="rates" alt="Rates Manager">Rates</menu>
+            <menu view="events" alt="Events Manager">Events</menu>
+        </submenu>
         <files folder="admin">
             <filename>index.html</filename>
             <filename>nyccevents.php</filename>

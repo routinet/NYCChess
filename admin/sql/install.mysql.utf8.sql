@@ -11,7 +11,6 @@ CREATE TABLE `#__nycc_locations` (
 	PRIMARY KEY (`id`)
 )
 	ENGINE =MyISAM
-	AUTO_INCREMENT =0
 	DEFAULT CHARSET =utf8;
 
 DROP TABLE IF EXISTS `#__nycc_rates`;
@@ -20,6 +19,20 @@ CREATE TABLE `#__nycc_rates` (
 	`label`  VARCHAR(25) NOT NULL,
 	`price`  FLOAT(7,2) NOT NULL DEFAULT '0.00',
 	`active` TINYINT(4) UNSIGNED NOT NULL,
+	PRIMARY KEY (`id`)
+)
+	ENGINE =MyISAM
+	DEFAULT CHARSET =utf8;
+
+DROP TABLE IF EXISTS `#__nycc_events`;
+CREATE TABLE `#__nycc_events` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(100) NOT NULL,
+	`main_location` BIGINT(20) UNSIGNED NOT NULL DEFAULT '0',
+	`short_description` VARCHAR(250) NOT NULL,
+	`long_description` TEXT NOT NULL,
+	`schedule` TEXT NOT NULL,
+	`active` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
 )
 	ENGINE =MyISAM

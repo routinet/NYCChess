@@ -11,10 +11,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Locations List Model
+ * Events List Model
  *
  * @since  0.0.1
  */
-class NyccEventsModelLocations extends NyccEventsModelBaseList {
-  protected $_table_name = 'locations';
+class NyccEventsModelEvents extends NyccEventsModelBaseList {
+  protected $_table_name = 'events';
 }

@@ -11,10 +11,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Locations List Model
+ * Event Controller
  *
- * @since  0.0.1
+ * @since       0.0.1
  */
-class NyccEventsModelLocations extends NyccEventsModelBaseList {
-  protected $_table_name = 'locations';
+class NyccEventsControllerEvent extends JControllerForm {
 }

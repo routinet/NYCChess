@@ -11,5 +11,6 @@
     <li class="nycc-events-menu-item"><a href="index.php?option=com_nyccevents">Main Menu</a></li>
     <li class="nycc-events-menu-item"><a href="index.php?option=com_nyccevents&view=locations">Locations</a></li>
     <li class="nycc-events-menu-item"><a href="index.php?option=com_nyccevents&view=rates">Rates</a></li>
+    <li class="nycc-events-menu-item"><a href="index.php?option=com_nyccevents&view=events">Events</a></li>
   </ul>
 </div>

@@ -7,14 +7,17 @@
  * @license     Commercial License Only
  */
 
-// No direct access to this file
+// No direct access
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Locations List Model
+ * Event Table class
  *
  * @since  0.0.1
  */
-class NyccEventsModelLocations extends NyccEventsModelBaseList {
-  protected $_table_name = 'locations';
+class NyccEventsTableEvent extends NyccEventsTableBaseTable {
+
+  protected $_table_name = 'events';
+  public $boolint_fields = array('active');
+
 }

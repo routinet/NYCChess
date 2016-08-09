@@ -11,7 +11,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * NyccEventList Model
+ * Rates List Model
  *
  * @since  0.0.1
  */

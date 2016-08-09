@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="general">
+        <field name="id" type="hidden"/>
+        <field
+                name="name"
+                type="text"
+                label="Event Name"
+                description="Name of the Event"
+                size="25"
+                class="inputbox"
+                default=""
+        />
+        <field
+                name="active"
+                type="checkbox"
+                label="Active"
+                description="Is rate active?"
+                default="0"
+        />
+        <field
+                name="main_location"
+                type="sql"
+                label="Primary Location"
+                description="(Optional) Primary location will provide contact information for the event."
+                default="0"
+                key_field="id"
+                value_field="name"
+                query="SELECT id,name from #__nycc_locations ORDER BY name"
+        />
+        <field
+                name="short_description"
+                type="textarea"
+                label="Short Description"
+                description="Up to 250 characters in plain text describing the event; a teaser."
+                cols="160"
+                rows="3"
+                class="inputbox span9"
+                default=""
+        />
+        <field
+                name="schedule"
+                type="textarea"
+                label="Schedule Text"
+                description="HTML field for content describing the event's schedule."
+                cols="80"
+                rows="6"
+                class="inputbox span9"
+                default=""
+        />
+        <field
+                name="long_description"
+                type="editor"
+                label="Long Description"
+                description="Full HTML describing event."
+                class="inputbox span12"
+                default=""
+        />
+    </fieldset>
+    <fieldset name="venues">
+        <field
+                name="venue1"
+                type="text"
+                label="Event Name"
+                description="Name of the Event"
+                size="25"
+                class="inputbox"
+                default=""
+        />
+
+    </fieldset>
+</form>
