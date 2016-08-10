@@ -59,14 +59,15 @@
     </fieldset>
     <fieldset name="venues">
         <field
-                name="venue1"
-                type="text"
-                label="Event Name"
-                description="Name of the Event"
-                size="25"
-                class="inputbox"
-                default=""
+                name="venue_location"
+                type="multiselect"
+                label="Includes Locations:"
+                description="Select all locations to be included in this venue definition."
+                default="0"
+                key_field="id"
+                value_field="name"
+                class="multiselecat"
+                query="SELECT id,name from #__nycc_locations WHERE active=1 ORDER BY name"
         />
-
     </fieldset>
 </form>

@@ -15,6 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 JLoader::registerPrefix('NyccEventsHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers');
 JLoader::registerPrefix('NyccEventsModel', JPATH_COMPONENT_ADMINISTRATOR . '/models');
 JLoader::registerPrefix('NyccEventsTable', JPATH_COMPONENT_ADMINISTRATOR . '/tables');
+JForm::addFieldPath(JPATH_COMPONENT . '/models/forms/fields');
 
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('NyccEvents');
