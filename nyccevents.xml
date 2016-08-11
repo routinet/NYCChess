@@ -26,6 +26,12 @@
         </schemas>
     </update>
 
+    <media destination="com_nyccevents" folder="media">
+        <filename>index.html</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+
     <files folder="site">
         <filename>index.html</filename>
         <filename>nyccevents.php</filename>

@@ -1,0 +1,59 @@
+/* CSS Checkboxes (.squaredOne) courtesy
+   https://codepen.io/bbodine1/pen/novBm/
+   */
+
+/*  */
+.multiselect-option {
+  height: 28px;
+  position: relative;
+  margin: 0px auto;
+  background: #fcfff4;
+  background: linear-gradient(to top, #fcfff4 0%, #E4EADC 40%, #E6F1E0 100%);
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 4px 10px 0;
+}
+
+.multiselect-option label {
+  position: relative;
+  padding: 4px 0 0 30px;
+  cursor:pointer;
+}
+
+.multiselect-option label::before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: linear-gradient(to top, #dddddd 0%, #e5e8ed 100%);
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+  margin-right: 25px;
+}
+
+.multiselect-option label::after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: #27ae60;
+  background: linear-gradient(to top, #27ae60 0%, #007b2d 100%);
+  opacity: 0;
+  box-shadow: box-shadow: inset 0px 1px 1px rgba(255,255,255,.4), 0px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.multiselect-option label:hover::after {
+  opacity: 0.3;
+}
+
+.multiselect-option input[type=checkbox] {
+  visibility: hidden;
+}
+
+.multiselect-option :checked + label::after {
+  opacity: 1;
+}
+
+/* end .squaredOne */
