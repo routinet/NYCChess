@@ -46,12 +46,16 @@ extract($displayData);
 JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', false, true);
 
+// add the multiselect style sheet
+JFactory::getDocument()->addStyleSheet('/media/' . basename(JPATH_COMPONENT) . '/css/multiselect.css');
+
 /**
  * The format of the input tag to be filled in using sprintf.
  *     %1 - id
  *     %2 - name
  *     %3 - value
  *     %4 = any other attributes
+ *     %5 = label text
  */
 $format = '<input type="checkbox" id="%1$s" name="%2$s" value="%3$s" %4$s /><label for="%1$s">%5$s</label>';
 

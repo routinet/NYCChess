@@ -39,10 +39,6 @@ class NyccEventsViewEvent extends JViewLegacy {
     // Set the toolbar
     $this->addToolBar();
 
-    // add the multiselect style sheet
-    $option = JFactory::getApplication()->input->get('option');
-    JFactory::getDocument()->addStyleSheet('/media/' . $option . '/css/multiselect.css');
-
     // Display the template
     parent::display($tpl);
   }

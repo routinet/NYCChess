@@ -66,7 +66,6 @@
                 default="0"
                 key_field="id"
                 value_field="name"
-                class="multiselecat"
                 query="SELECT id,name from #__nycc_locations WHERE active=1 ORDER BY name"
         />
     </fieldset>
