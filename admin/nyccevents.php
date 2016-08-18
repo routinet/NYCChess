@@ -17,6 +17,8 @@ JLoader::registerPrefix('NyccEventsModel', JPATH_COMPONENT_ADMINISTRATOR . '/mod
 JLoader::registerPrefix('NyccEventsTable', JPATH_COMPONENT_ADMINISTRATOR . '/tables');
 JForm::addFieldPath(JPATH_COMPONENT . '/models/forms/fields');
 
+JFactory::getDocument()->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/nycc-base.js');
+
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('NyccEvents');
 

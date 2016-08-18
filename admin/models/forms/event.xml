@@ -57,10 +57,10 @@
                 default=""
         />
     </fieldset>
-    <fieldset name="venues">
+    <fieldset name="add_venues">
         <field
                 name="venue_location"
-                type="multiselect"
+                type="nycc_multiselect"
                 label="Includes Locations:"
                 description="Select all locations to be included in this venue definition."
                 default="0"

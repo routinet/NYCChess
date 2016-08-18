@@ -49,7 +49,7 @@
 }
 
 .multiselect-option input[type=checkbox] {
-  visibility: hidden;
+  display: none;
 }
 
 .multiselect-option :checked + label::after {

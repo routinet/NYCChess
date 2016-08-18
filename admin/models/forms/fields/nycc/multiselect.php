@@ -15,7 +15,7 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  11.1
  */
-class JFormFieldMultiselect extends JFormFieldSQL
+class JFormFieldNYCC_Multiselect extends JFormFieldSQL
 {
 	/**
 	 * The form field type.
@@ -52,6 +52,7 @@ class JFormFieldMultiselect extends JFormFieldSQL
 
   /**
    * Method to get the data to be passed to the layout for rendering.
+   * Extended to add 'options' element.
    *
    * @return  array
    *

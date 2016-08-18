@@ -46,8 +46,15 @@ extract($displayData);
 JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', false, true);
 
-// add the multiselect style sheet
-JFactory::getDocument()->addStyleSheet('/media/' . basename(JPATH_COMPONENT) . '/css/multiselect.css');
+// Make sure jQuery is loaded.
+JHtml::_('jquery.framework');
+
+
+// Add the multiselect style sheet and script files.
+$doc = JFactory::getDocument();
+$doc->addStyleSheet('/media/' . basename(JPATH_COMPONENT) . '/css/multiselect.css');
+$doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/ajax-handler.js');
+$doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/multiselect.js');
 
 /**
  * The format of the input tag to be filled in using sprintf.
@@ -61,11 +68,12 @@ $format = '<input type="checkbox" id="%1$s" name="%2$s" value="%3$s" %4$s /><lab
 
 ?>
 
-<fieldset id="<?php echo $id; ?>" class="multiselect <?php echo trim($class . ' checkboxes'); ?>"
+<fieldset id="<?php echo $id; ?>" class="nycc-multiselect add-venue-field <?php echo trim($class); ?>"
 	<?php echo $required ? 'required aria-required="true"' : '';?>
 	<?php echo $autofocus ? 'autofocus' : ''; ?>>
 	<div class="multiselect-container">
 		<div class="multiselect-value"></div>
+    <div class="multiselect-submit"><input type="button" value="Save" /></div>
 		<div class="multiselect-options">
 			<?php
 			foreach ($options as $i => $option) {
