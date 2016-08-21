@@ -59,14 +59,11 @@
     </fieldset>
     <fieldset name="add_venues">
         <field
-                name="venue_location"
-                type="nycc_multiselect"
-                label="Includes Locations:"
-                description="Select all locations to be included in this venue definition."
+                name="new_venue"
+                type="nycc_addvenue"
+                label="Add a Venue:"
                 default="0"
-                key_field="id"
-                value_field="name"
-                query="SELECT id,name from #__nycc_locations WHERE active=1 ORDER BY name"
+                description="A Venue is made of a locations, a date, and any number of modifiers (optional).  You can multi-select locations or dates to add multiple Venues at once."
         />
     </fieldset>
 </form>

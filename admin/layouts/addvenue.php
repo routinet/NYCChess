@@ -8,6 +8,7 @@
  */
 
 defined('JPATH_BASE') or die;
+
 extract($displayData);
 
 /**
@@ -51,51 +52,10 @@ JHtml::_('jquery.framework');
 
 // Add the multiselect style sheet and script files.
 $doc = JFactory::getDocument();
-$doc->addStyleSheet('/media/' . basename(JPATH_COMPONENT) . '/css/multiselect.css');
-$doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/multiselect.js');
+$doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/ajax-handler.js');
 
-/**
- * The format of the input tag to be filled in using sprintf.
- *     %1 - id
- *     %2 - name
- *     %3 - value
- *     %4 = any other attributes
- *     %5 = label text
- */
-$format = '<input type="checkbox" id="%1$s" name="%2$s" value="%3$s" %4$s /><label for="%1$s">%5$s</label>';
+
 ?>
-
-<fieldset id="<?php echo $input['id']; ?>" class="nycc-multiselect add-venue-field <?php echo trim($input['class']); ?>"
-	<?php echo $input['required'] ? 'required aria-required="true"' : '';?>
-	<?php echo $input['autofocus'] ? 'autofocus' : ''; ?>>
-	<div class="multiselect-container">
-		<div class="multiselect-value"></div>
-    <div class="multiselect-submit"><input type="button" value="Save" /></div>
-		<div class="multiselect-options">
-			<?php
-			foreach ($input['options'] as $i => $option) {
-				// Initialize some option attributes.
-				// TODO: works for a new venue right now.  Make this work for editing a venue (existing checkboxes)
-				//$checked = in_array((string) $option->value, $checkedOptions) ? 'checked' : '';
-				$checked = '';
-
-				// In case there is no stored value, use the option's default state.
-				$optionClass = !empty($option->class) ? 'class="' . $option->class . '"' : '';
-				$disabled    = !empty($option->disable) || $input['disabled'] ? 'disabled' : '';
-
-				// Initialize some JavaScript option attributes.
-				$onclick  = !empty($option->onclick) ? 'onclick="' . $option->onclick . '"' : '';
-				$onchange = !empty($option->onchange) ? 'onchange="' . $option->onchange . '"' : '';
-
-				$oid        = $input['id'] . $i;
-				$value      = htmlspecialchars($option->value, ENT_COMPAT, 'UTF-8');
-				$attributes = array_filter(array($checked, $optionClass, $disabled, $onchange, $onclick));
-
-				echo '<div class="multiselect-option">' .
-					sprintf($format, $oid, $input['name'], $value, implode(' ', $attributes), $option->text) .
-					'</div>';
-			}
-			?>
-		</div>
-	</div>
+<fieldset id="<?php echo $id; ?>" class="nycc-add-venue <?php echo trim($class); ?>">
+	<?php echo $subform->renderField('venue_location'); ?>
 </fieldset>

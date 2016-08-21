@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="addvenue">
+        <field name="venue_location"
+               type="nycc_multiselect"
+               label="Includes Locations:"
+               description="Select all locations to be included in this venue definition."
+               default="0"
+               key_field="id"
+               value_field="name"
+               query="SELECT id,name from #__nycc_locations WHERE active=1 ORDER BY name"
+        />
+    </fieldset>
+</form>
