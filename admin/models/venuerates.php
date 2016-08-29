@@ -7,17 +7,14 @@
  * @license     Commercial License Only
  */
 
-// No direct access
+// No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Event Table class
+ * Venue Rates List Model
  *
  * @since  0.0.1
  */
-class NyccEventsTableEvent extends NyccEventsTableBaseTable {
-
-  protected $_table_name = 'events';
-  protected $boolint_fields = array('active');
-
+class NyccEventsModelVenueRates extends NyccEventsModelBaseList {
+  protected $_table_name = 'venue_rates';
 }

@@ -32,7 +32,7 @@ class NyccEventsTableBaseTable extends JTable {
    * @var array
    * @since 0.0.1
    */
-  public $boolint_fields = array();
+  protected $boolint_fields = array();
 
   /**
    * Constructor
@@ -41,7 +41,7 @@ class NyccEventsTableBaseTable extends JTable {
    * @throws  RuntimeException
    * @param   JDatabaseDriver  &$db  A database connector object
    */
-  function __construct(&$db) {
+  public function __construct(&$db) {
     if (!$this->_table_name) {
       throw new RuntimeException(get_called_class() . " failed to identify its table");
     }
@@ -60,7 +60,7 @@ class NyccEventsTableBaseTable extends JTable {
    *
    * @since version
    */
-  private function _convertBoolIntFields($src) {
+  protected function _convertBoolIntFields($src) {
     foreach ($this->boolint_fields as $val) {
       if (!array_key_exists($val, $src)) {
         $src[$val] = 0;
@@ -79,5 +79,128 @@ class NyccEventsTableBaseTable extends JTable {
    */
   public function bind($src, $ignore = array()){
     return parent::bind($this->_convertBoolIntFields($src), $ignore);
+  }
+
+  /**
+   * An abstract of the query generation code from parent::load().  This
+   * allows calling code to get the base query, and alter it (e.g., with
+   * relational joins) prior to calling.
+   *
+   * @see JTable::load()
+   * @param mixed $keys
+   *   An optional primary key value to load the row by, or an array of fields to match.
+   *   If not set the instance property value is used.
+   *
+   * @return \JDatabaseQuery
+   *
+   * @since 0.0.1
+   */
+  public function getTableQuery($keys = null) {
+    $query = $this->_db->getQuery(true)
+      ->select('main.*')
+      ->from("{$this->_tbl} as main");
+    $fields = array_keys($this->getProperties());
+
+    $keys = $this->resolveKeys($keys);
+
+    foreach ($keys as $field => $value) {
+      // Check that $field is in the table.
+      if (!in_array($field, $fields)) {
+        throw new UnexpectedValueException(sprintf('Missing field in database: %s &#160; %s.', get_class($this), $field));
+      }
+      // Add the search tuple to the query.
+      $query->where('main.' . $this->_db->quoteName($field) . ' = ' . $this->_db->quote($value));
+    }
+
+    return $query;
+  }
+
+  /**
+   * Overrides parent::load() in order to abstract the query generation to a
+   * separate method.  This is necessary to allow for generating the base query
+   * for a table, and allowing other calling code to alter the table, e.g.,
+   * to add relational joins, etc.
+   * TODO: is this going to cause problems with saving data?
+   *
+   * @param   mixed    $keys   An optional primary key value to load the row by, or an array of fields to match.
+   *                           If not set the instance property value is used.
+   * @param   boolean  $reset  True to reset the default values before loading the new row.
+   *
+   * @return  boolean  True if successful. False if row not found.
+   *
+   * @since   0.0.1
+   * @throws  InvalidArgumentException
+   * @throws  RuntimeException
+   * @throws  UnexpectedValueException
+   */
+  public function load($keys = null, $reset = true) {
+    // Implement JObservableInterface: Pre-processing by observers
+    $this->_observers->update('onBeforeLoad', array($keys, $reset));
+
+    if ($reset) {
+      $this->reset();
+    }
+
+    $query = $this->getTableQuery($keys);
+
+    $this->_db->setQuery($query);
+
+    $row = $this->_db->loadAssoc();
+
+    // Check that we have a result.
+    if (empty($row)) {
+      $result = false;
+    } else {
+      // Bind the object with the row and return.
+      $result = $this->bind($row);
+    }
+
+    // Implement JObservableInterface: Post-processing by observers
+    $this->_observers->update('onAfterLoad', array(&$result, $row));
+
+    return $result;
+  }
+
+  /**
+   * An abstraction of the code identifying primary key search values.
+   *
+   * @see JTable::load()
+   * @param mixed $keys
+   *   An optional primary key value to load the row by, or an array of fields to match.
+   *   If not set the instance property value is used.
+   *
+   * @return array|null
+   *
+   * @since 0.0.1
+   */
+  public function resolveKeys($keys = null) {
+    if (empty($keys)) {
+      $empty = true;
+      $keys  = array();
+
+      // If empty, use the value of the current key
+      foreach ($this->_tbl_keys as $key) {
+        $empty      = $empty && empty($this->$key);
+        $keys[$key] = $this->$key;
+      }
+
+      // If empty primary key there's is no need to load anything
+      if ($empty) {
+        return array();
+      }
+    } elseif (!is_array($keys)) {
+      // Load by primary key.
+      $keyCount = count($this->_tbl_keys);
+
+      if ($keyCount) {
+        if ($keyCount > 1) {
+          throw new InvalidArgumentException('Table has multiple primary keys specified, only one primary key value provided.');
+        }
+        $keys = array($this->getKeyName() => $keys);
+      } else {
+        throw new RuntimeException('No table keys defined.');
+      }
+    }
+    return $keys;
   }
 }

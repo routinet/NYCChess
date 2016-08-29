@@ -15,6 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 JLoader::registerPrefix('NyccEventsHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers');
 JLoader::registerPrefix('NyccEventsModel', JPATH_COMPONENT_ADMINISTRATOR . '/models');
 JLoader::registerPrefix('NyccEventsTable', JPATH_COMPONENT_ADMINISTRATOR . '/tables');
+JForm::addFormPath(JPATH_COMPONENT . '/models/forms');
 JForm::addFieldPath(JPATH_COMPONENT . '/models/forms/fields');
 
 JFactory::getDocument()->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/nycc-base.js');

@@ -18,6 +18,6 @@ defined('_JEXEC') or die('Restricted access');
 class NyccEventsTableRate extends NyccEventsTableBaseTable {
 
   protected $_table_name = 'rates';
-  public $boolint_fields = array('active');
+  protected $boolint_fields = array('is_multiplier','active');
 
 }

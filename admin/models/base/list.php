@@ -38,6 +38,16 @@ class NyccEventsModelBaseList extends JModelList {
   }
 
   /**
+   * Override in child to modify the query object
+   *
+   * @param JDatabaseQuery object
+   * @since 0.0.1
+   */
+  protected function addQueryRelations(&$query) {
+
+  }
+
+  /**
    * Method to build an SQL query to load the list data.
    * TODO: this method should use $this->state properly
    *
@@ -49,7 +59,9 @@ class NyccEventsModelBaseList extends JModelList {
     $query = $this->_db->getQuery(true);
 
     // Create the base select statement.
-    $query->select('*')->from($query->quoteName("#__nycc_{$this->_table_name}"));
+    $query->select('main.*')->from($query->quoteName("#__nycc_{$this->_table_name}"). ' as main');
+
+    $this->addQueryRelations($query);
 
     if ($this->filter_fields) {
       $query = NyccEventsHelperUtils::addFilterConditions($query, $this->filter_fields);

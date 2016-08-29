@@ -16,4 +16,8 @@ defined('_JEXEC') or die('Restricted access');
  * @since       0.0.1
  */
 class NyccEventsControllerEvent extends JControllerForm {
+  public function addVenue() {
+    $model = $this->getModel();
+    $event = $model->getItem($this->input->get('id'));
+  }
 }

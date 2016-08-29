@@ -53,9 +53,8 @@ JHtml::_('jquery.framework');
 // Add the multiselect style sheet and script files.
 $doc = JFactory::getDocument();
 $doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/ajax-handler.js');
-
-
 ?>
 <fieldset id="<?php echo $id; ?>" class="nycc-add-venue <?php echo trim($class); ?>">
 	<?php echo $subform->renderField('venue_location'); ?>
+  <div class="nycc-add-venue-submit"><input type="submit" value="Save" /></div>
 </fieldset>

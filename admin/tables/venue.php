@@ -11,13 +11,13 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Event Table class
+ * Venue Table class
  *
  * @since  0.0.1
  */
-class NyccEventsTableEvent extends NyccEventsTableBaseTable {
+class NyccEventsTableVenue extends NyccEventsTableBaseTable {
 
-  protected $_table_name = 'events';
+  protected $_table_name = 'venues';
   protected $boolint_fields = array('active');
 
 }

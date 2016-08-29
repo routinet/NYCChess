@@ -119,4 +119,16 @@ abstract class NyccEventsHelperUtils {
     return $query->where($condition, $glue);
   }
 
+  /**
+   * Wrapper function to quickly add a message to the application queue.
+   *
+   * @param string $msg
+   * @param string $lvl
+   *
+   * @since 0.0.1
+   */
+  public static function setAppError($msg, $lvl = 'error') {
+    JFactory::getApplication()->enqueueMessage((string) $msg, (string) $lvl);
+  }
+
 }

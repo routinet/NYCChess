@@ -17,6 +17,22 @@ defined('_JEXEC') or die('Restricted access');
  */
 abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
 
+  /**
+   * Holds definitions of lookups fields.
+   * Event Example: array('field'=>'main_location', 'table'=>'locations', 'lookup'=>'name')
+   *
+   * @var array
+   * @since 0.0.1
+   */
+  protected $_lookups = array();
+
+  /**
+   * Easy reference property holding parsed type/name from class name
+   *
+   * @var bool|mixed
+   * @see NyccEventsHelperUtils::getObjectType()
+   * @since 0.0.1
+   */
   public $self_type = false;
 
   /**
@@ -29,6 +45,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
    */
   public function __construct($config = array()) {
     parent::__construct($config);
+
     $this->self_type = NyccEventsHelperUtils::getObjectType($this);
   }
 
@@ -68,20 +85,77 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
     }
 
     // Get the form.
-    $form = $this->loadForm(
-      "com_nyccevents.{$this->self_type->name}",
-      $this->self_type->name,
-      array(
-        'control' => 'jform',
-        'load_data' => $loadData
-      )
-    );
+    if ($loadData) {
+      $form = $this->loadForm(
+        "com_nyccevents.{$this->self_type->name}",
+        $this->self_type->name,
+        array(
+          'control'   => 'jform',
+          'load_data' => $loadData
+        )
+      );
+    } elseif ($data) {
+      $form = JForm::getInstance(
+        "com_nyccevents.{$this->self_type->name}",
+        $this->self_type->name,
+        array( 'control'   => 'jform', )
+        );
+
+      // Allow for additional modification of the form, and events to be triggered.
+      // We pass the data because plugins may require it.
+      $this->preprocessForm($form, $data);
+
+      // Load the data into the form after the plugins have operated.
+      $form->bind($data);
+    }
 
     if (empty($form)) {
       return false;
     }
 
     return $form;
+  }
+
+  /**
+   * Method to get a single record.  This customization is to allow for
+   * intuitive binding with lookup fields, defined in $this->_lookups
+   *
+   * @param   integer  $pk  The id of the primary key.
+   *
+   * @return  mixed    Object on success, false on failure.
+   *
+   * @see JModelAdmin::getItem
+   *
+   * @since   0.0.1
+   */
+  public function getItem($pk = null) {
+    if (count($this->_lookups)) {
+      // get the table for this model
+      $table = $this->getTable();
+
+      // get the query oject used to load data
+      $query = $table->getTableQuery($pk);
+      foreach ($this->_lookups as $key=>$lookup) {
+        // array('field'=>'main_location', 'table'=>'locations', 'lookup'=>'name')
+        $join = "#__nycc_{$lookup['table']} as {$lookup['table']} ON " .
+          /*$table->getTableName() . */"main.{$lookup['field']}={$lookup['table']}.id";
+        $select = "{$lookup['table']}.{$lookup['lookup']} " .
+          "as {$key}_{$lookup['lookup']}";
+        $query->join('INNER', $join)->select($select);
+      }
+      logit("getItem query=".(string)$query);
+      $row = $this->_getList($query);
+      if (count($row)) {
+        $row = $row[0];
+      } else {
+        NyccEventsHelperUtils::setAppError("getItem() failed to load PK=$pk");
+        return false;
+      }
+      logit("loaded row=\n".var_export($row,1));
+      return $row;
+    } else {
+      return parent::getItem($pk);
+    }
   }
 
   /**

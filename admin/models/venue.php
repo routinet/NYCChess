@@ -11,11 +11,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Event Model
+ * Venue Model
  *
  * @since  0.0.1
  */
-class NyccEventsModelEvent extends NyccEventsModelBaseMultilevel {
+class NyccEventsModelVenue extends NyccEventsModelBaseMultilevel {
   /**
    * Constructor.
    *
@@ -26,12 +26,12 @@ class NyccEventsModelEvent extends NyccEventsModelBaseMultilevel {
    */
   public function __construct($config = array()) {
     $this->_joins = array(
-      'venues' => array('list_model'=>'Venues', 'item_model'=>'Venue', 'fk'=>'event_id'),
+      'rates' => array('list_model'=>'Venuerates', 'item_model'=>'Venuerate', 'fk'=>'venue_id'),
     );
     $this->_lookups = array(
-      'location' => array('field'=>'main_location', 'table'=>'locations', 'lookup'=>'name'),
+      'event' => array('field'=>'event_id', 'table'=>'events', 'lookup'=>'name'),
+      'location' => array('field'=>'location_id', 'table'=>'locations', 'lookup'=>'name'),
     );
     parent::__construct($config);
   }
-
 }

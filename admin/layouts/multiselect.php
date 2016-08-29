@@ -65,12 +65,9 @@ $doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/multiselect.js');
 $format = '<input type="checkbox" id="%1$s" name="%2$s" value="%3$s" %4$s /><label for="%1$s">%5$s</label>';
 ?>
 
-<fieldset id="<?php echo $input['id']; ?>" class="nycc-multiselect add-venue-field <?php echo trim($input['class']); ?>"
-	<?php echo $input['required'] ? 'required aria-required="true"' : '';?>
-	<?php echo $input['autofocus'] ? 'autofocus' : ''; ?>>
+<div id="<?php echo $input['id']; ?>" class="nycc-multiselect <?php echo trim($input['class']); ?>"
 	<div class="multiselect-container">
 		<div class="multiselect-value"></div>
-    <div class="multiselect-submit"><input type="button" value="Save" /></div>
 		<div class="multiselect-options">
 			<?php
 			foreach ($input['options'] as $i => $option) {
