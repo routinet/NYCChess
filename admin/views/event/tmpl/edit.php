@@ -10,10 +10,11 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 $save_route = JRoute::_('index.php?option=com_nyccevents&id=' . (int) $this->item->id);
+$hash_tabset = 'myTab';
 ?>
 <div class="form-horizontal">
-  <?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
-  <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general', JText::_('Event Info')); ?>
+  <?php echo JHtml::_('bootstrap.startTabSet', $hash_tabset, array('active' => 'general')); ?>
+  <?php echo JHtml::_('bootstrap.addTab', $hash_tabset, 'general', JText::_('Event Info')); ?>
   <div class="row-fluid">
     <form method="post" name="adminForm" id="adminForm" action="<?php echo $save_route; ?>">
       <div class="span9">
@@ -25,7 +26,7 @@ $save_route = JRoute::_('index.php?option=com_nyccevents&id=' . (int) $this->ite
   </div>
   <?php echo JHtml::_('bootstrap.endTab'); ?>
   <?php if ((int) $this->item->id) { ?>
-  <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'venues', JText::_('Venues')); ?>
+  <?php echo JHtml::_('bootstrap.addTab', $hash_tabset, 'venues', JText::_('Venues')); ?>
   <div class="row-fluid">
     <form method="post" name="adminFormVenues" id="adminFormVenues" action="<?php echo $save_route; ?>">
       <?php echo $this->form->renderField('id'); ?>
@@ -68,3 +69,22 @@ $save_route = JRoute::_('index.php?option=com_nyccevents&id=' . (int) $this->ite
   <?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 </div>
+<script type="text/javascript">
+  (function ($, document, window, undefined) {
+    $(document).ready(function () {
+      if (window.location.hash) {
+        var
+          hash_tab = '#<?php echo $hash_tabset; ?>';
+          all_tabs = $(hash_tab + 'Tabs'),
+          tab = all_tabs.find('a[href="' + window.location.hash + '"]'),
+          ct = $(hash_tab + 'Content.tab-content');
+        if (tab) {
+          all_tabs.find('li.active').removeClass('active');
+          tab.closest('li').addClass('active');
+          ct.find('.tab-pane.active').removeClass('active');
+          ct.find(window.location.hash + '.tab-pane').addClass('active');
+        }
+      }
+    });
+  })(jQuery, document, window);
+</script>
