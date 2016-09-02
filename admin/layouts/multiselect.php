@@ -64,9 +64,10 @@ $doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/multiselect.js');
  */
 $format = '<input type="checkbox" id="%1$s" name="%2$s" value="%3$s" %4$s /><label for="%1$s">%5$s</label>';
 ?>
+<div class="multiselect-container">
+  <div class="multiselect-label"><?php echo $input['label']; ?></div>
 
-<div id="<?php echo $input['id']; ?>" class="nycc-multiselect <?php echo trim($input['class']); ?>"
-	<div class="multiselect-container">
+  <div id="<?php echo $input['id']; ?>" class="nycc-multiselect <?php echo trim($input['class']); ?>">
 		<div class="multiselect-value"></div>
 		<div class="multiselect-options">
 			<?php
@@ -94,5 +95,5 @@ $format = '<input type="checkbox" id="%1$s" name="%2$s" value="%3$s" %4$s /><lab
 			}
 			?>
 		</div>
-	</div>
-</fieldset>
+  </div>
+</div>

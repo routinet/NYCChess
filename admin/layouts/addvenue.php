@@ -55,6 +55,10 @@ $doc = JFactory::getDocument();
 $doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/ajax-handler.js');
 ?>
 <fieldset id="<?php echo $id; ?>" class="nycc-add-venue <?php echo trim($class); ?>">
-	<?php echo $subform->renderField('venue_location'); ?>
-  <div class="nycc-add-venue-submit"><input type="submit" value="Save" /></div>
+  <div class="row-fluid">
+    <div class="span4"><?php echo $subform->renderField('venue_location'); ?></div>
+    <div class="span3"><?php echo $subform->renderField('venue_dates'); ?></div>
+    <div class="span4"><?php echo $subform->renderField('venue_rates'); ?></div>
+  </div>
+  <div class="nycc-add-venue-submit"><input type="submit" value="Save New Venue" /></div>
 </fieldset>

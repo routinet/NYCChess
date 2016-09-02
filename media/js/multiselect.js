@@ -20,9 +20,10 @@
     // set the click handler for the checkbox
     this.$e.on('change', 'input[type="checkbox"]', function (e) {
       e.stopPropagation();
+      $parent = $value.closest('.nycc-multiselect')
       $value.html(
           $.makeArray(
-              $('input[type="checkbox"]:checked')
+              $parent.find('input[type="checkbox"]:checked')
                   .map(function (k,v) { return $(v).next('label').html(); })
           ).join(', ')
       );

@@ -1,0 +1,15 @@
+fieldset.nycc-add-venue .nycc-multiselect {
+  height: 170px;
+  overflow-y:scroll;
+  max-height: 170px;
+}
+
+.nycc-add-venue-submit {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 18pt;
+}
+.nycc-add-venue-submit input {
+  font-size: 14pt;
+  padding: 6px 15px;
+}

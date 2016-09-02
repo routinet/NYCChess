@@ -11,5 +11,20 @@
                multiple="true"
                query="SELECT id,name from #__nycc_locations WHERE active=1 ORDER BY name"
         />
+        <field name="venue_dates"
+               type="nycc_datepicker"
+               label="For Dates:"
+               description="Select multiple days at once to add venues for each."
+        />
+        <field name="venue_rates"
+               type="nycc_multiselect"
+               label="Apply Rates:"
+               description="Select all rates to be allowed for this venue."
+               default="0"
+               key_field="id"
+               value_field="label"
+               multiple="true"
+               query="SELECT id,label from #__nycc_rates WHERE active=1 ORDER BY label"
+        />
     </fieldset>
 </form>

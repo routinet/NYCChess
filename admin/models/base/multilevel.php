@@ -97,7 +97,7 @@ class NyccEventsModelBaseMultilevel extends NyccEventsModelBaseAdmin {
    * @since 0.0.1
    */
   public static function loadObject($subtable, $load_objects = true) {
-    logit("receiving subtable:".var_export($subtable,1));
+
     // initialize the return
     $this_sub = array();
 
@@ -151,7 +151,6 @@ class NyccEventsModelBaseMultilevel extends NyccEventsModelBaseAdmin {
     foreach ($this->_joins as $type => $subtable) {
       $subtable['fk_value'] = $host_object->id;
       $host_object->{$type} = static::loadObject($subtable, $load_objects);
-      logit("Setting $type to ".var_export($host_object->{$type},1));
     }
   }
 }

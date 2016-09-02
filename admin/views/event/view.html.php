@@ -35,7 +35,6 @@ class NyccEventsViewEvent extends JViewLegacy {
     // Get the Data and load it into the form
     $this->item = $this->get('Item');
     $this->form = $this->getModel()->getForm($this->item, false);
-    logit("item data=".var_export($this->item,1));
 
     // Set the toolbar
     $this->addToolBar();

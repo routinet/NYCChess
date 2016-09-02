@@ -143,7 +143,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
           "as {$key}_{$lookup['lookup']}";
         $query->join('INNER', $join)->select($select);
       }
-      logit("getItem query=".(string)$query);
+
       $row = $this->_getList($query);
       if (count($row)) {
         $row = $row[0];
@@ -151,7 +151,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
         NyccEventsHelperUtils::setAppError("getItem() failed to load PK=$pk");
         return false;
       }
-      logit("loaded row=\n".var_export($row,1));
+
       return $row;
     } else {
       return parent::getItem($pk);

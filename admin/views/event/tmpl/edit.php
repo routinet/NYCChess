@@ -30,23 +30,21 @@ $hash_tabset = 'myTab';
   <div class="row-fluid">
     <form method="post" name="adminFormVenues" id="adminFormVenues" action="<?php echo $save_route; ?>">
       <?php echo $this->form->renderField('id'); ?>
-      <div class="span9">
-        <?php echo $this->form->renderFieldset('add_venues'); ?>
-      </div>
+      <?php echo $this->form->renderFieldset('add_venues'); ?>
       <input type="hidden" name="task" value="event.addVenue" />
       <?php echo JHtml::_('form.token'); ?>
     </form>
     <div class="span9 current-venues">
-      <?php
-      if (count($this->item->venues)) {
-        foreach ($this->item->venues as $venue)
-        {
-      ?>
       <div class="row-fluid venue-record venue-record-header">
         <div class="span3">Location Name</div>
         <div class="span3">Date of Event</div>
         <div class="span6">Applied Rates</div>
       </div>
+      <?php
+      if (count($this->item->venues)) {
+        foreach ($this->item->venues as $venue)
+        {
+      ?>
       <div class="row-fluid venue-record">
         <div class="span3"><?php echo $venue->location_name; ?></div>
         <div class="span3"><?php echo date("Y-m-d", $venue->event_date); ?></div>
@@ -59,7 +57,9 @@ $hash_tabset = 'myTab';
       <?php
         }
       } else {
-        echo "No venues have been added yet.";
+      ?>
+      <div>No venues have been added yet.</div>
+      <?php
       }
       ?>
     </div>
