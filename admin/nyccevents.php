@@ -7,7 +7,9 @@
  * @license     Commercial License Only
  */
 
+// TODO: make sure index.html is in every directory
 
+// TODO: make sure this line is in every file
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
