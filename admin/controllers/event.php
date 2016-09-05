@@ -38,9 +38,6 @@ class NyccEventsControllerEvent extends JControllerForm {
       'active' => 1
     );
 
-    // seed the success
-    $success = true;
-
     // get the form data
     $new_locs = $this->input->get('venue_location', array(), 'ARRAY');
     $new_dates = $this->input->get('venue_dates', '', 'STRING');
@@ -50,14 +47,19 @@ class NyccEventsControllerEvent extends JControllerForm {
     }
     $new_rates = $this->input->get('venue_rates', array(), 'ARRAY');
 
+    // seed the success
+    $success = count($new_locs) && count($new_dates);
+
     // for each location, for each day, add one record
     foreach ($new_locs as $key=>$val) {
       foreach ($new_dates as $key2=>$val2) {
         // set the location and dat
         $bind_array['location_id'] = $val;
         $bind_array['event_date'] = $val2;
+
         // save the record
         $success &= $venue_table->save($bind_array);
+
         if ($success) {
           // save the rates.  Do a mass INSERT to save cycles.
           $query = $dbo->getQuery(TRUE);
@@ -80,7 +82,11 @@ class NyccEventsControllerEvent extends JControllerForm {
     if ($success) {
       NyccEventsHelperUtils::setAppError("Venue(s) saved.", "success");
     } else {
-      NyccEventsHelperUtils::setAppError("An error occurred while saving the venue(s).");
+      $msg = "An error occurred while saving the venue(s).";
+      if (!(count($new_locs) && count($new_dates))) {
+        $msg .= " (Locations or Dates was blank)";
+      }
+      NyccEventsHelperUtils::setAppError($msg);
     }
 
     // redirect back to the form
