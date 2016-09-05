@@ -7,6 +7,12 @@
  * @license     Commercial License Only
  */
 
+$doc = JFactory::getDocument();
+// Add datatables
+$doc->addScript("https://cdn.datatables.net/v/dt/dt-1.10.12/fh-3.1.2/datatables.min.js");
+$doc->addScriptDeclaration("jQuery(function(\$) { \$('.nycc-datatable').DataTable(); });");
+$doc->addStyleSheet("https://cdn.datatables.net/v/dt/dt-1.10.12/fh-3.1.2/datatables.min.css");
+
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 $save_route = JRoute::_('index.php?option=com_nyccevents&id=' . (int) $this->item->id);
@@ -34,34 +40,42 @@ $hash_tabset = 'myTab';
       <input type="hidden" name="task" value="event.addVenue" />
       <?php echo JHtml::_('form.token'); ?>
     </form>
-    <div class="span9 current-venues">
-      <div class="row-fluid venue-record venue-record-header">
-        <div class="span3">Location Name</div>
-        <div class="span3">Date of Event</div>
-        <div class="span6">Applied Rates</div>
-      </div>
+    <div class="current-venues">
+      <table id="current-venues" class="nycc-datatable">
+        <thead>
+        <tr class="venue-record venue-record-header">
+          <td>Location Name</td>
+          <td>Date of Event</td>
+          <td>Applied Rates</td>
+        </tr>
+        </thead>
+        <tbody>
       <?php
       if (count($this->item->venues)) {
         foreach ($this->item->venues as $venue)
         {
       ?>
-      <div class="row-fluid venue-record">
-        <div class="span3"><?php echo $venue->location_name; ?></div>
-        <div class="span3"><?php echo date("Y-m-d", $venue->event_date); ?></div>
-        <div class="span6"><?php
-          $these_rates = array_map(function($v){return $v->rate_label;}, $venue->rates);
-          sort($these_rates);
-          echo implode(',', $these_rates);
-          ?></div>
-      </div>
+          <tr class="venue-record">
+            <td><?php echo $venue->location_name; ?></td>
+            <td><?php echo date("Y-m-d", $venue->event_date); ?></td>
+            <td><?php
+                $these_rates = array_map(function($v){return $v->rate_label;}, $venue->rates);
+                sort($these_rates);
+                echo implode(',', $these_rates);
+                ?></td>
+          </tr>
       <?php
         }
       } else {
       ?>
-      <div>No venues have been added yet.</div>
+          <tr class="venue-record empty-list">
+            <td colspan="3">No venues have been added yet.</td>
+          </tr>
       <?php
       }
       ?>
+        </tbody>
+      </table>
     </div>
   </div>
   <?php echo JHtml::_('bootstrap.endTab'); ?>

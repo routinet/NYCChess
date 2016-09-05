@@ -106,7 +106,11 @@ class NyccEventsModelBaseMultilevel extends NyccEventsModelBaseAdmin {
       NyccEventsHelperUtils::setAppError("Subtable was not populated.  See " . __FILE__);
       return $this_sub;
     }
-    $list_config = array('filter_fields' => array($subtable['fk'] => $subtable['fk_value']));
+
+    // set up the model configs (propagate load_objects, set filter, set state)
+    $list_config = array('ignore_request' => true,
+                         'filter_fields' => array($subtable['fk'] => $subtable['fk_value'])
+    );
     $item_config = array('load_objects' => $load_objects);
 
     // set up the models - one for list, one for item
@@ -115,8 +119,11 @@ class NyccEventsModelBaseMultilevel extends NyccEventsModelBaseAdmin {
 
     // instantiate the Models
     try {
+      // instantiate
       $list_model = new $list_model_name($list_config);
       $item_model = new $item_model_name($item_config);
+      // set the state limit on the list model (we want all records)
+      $list_model->setState('list.limit', 0);
     } catch (Exception $e) {
       NyccEventsHelperUtils::setAppError($e->getMessage());
       return $this_sub;
