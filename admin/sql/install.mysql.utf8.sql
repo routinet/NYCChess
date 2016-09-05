@@ -24,7 +24,6 @@ CREATE TABLE `#__nycc_rates` (
 )
 	ENGINE=MyISAM
 	DEFAULT CHARSET =utf8;
-;
 
 DROP TABLE IF EXISTS `#__nycc_events`;
 CREATE TABLE `#__nycc_events` (
