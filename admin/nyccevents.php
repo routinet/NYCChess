@@ -13,6 +13,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Make sure jQuery is loaded.
+JHtml::_('jquery.framework');
+
 // Register the search path for objects
 JLoader::registerPrefix('NyccEventsHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers');
 JLoader::registerPrefix('NyccEventsModel', JPATH_COMPONENT_ADMINISTRATOR . '/models');

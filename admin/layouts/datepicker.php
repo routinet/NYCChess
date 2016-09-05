@@ -42,12 +42,7 @@ extract($displayData);
  */
 
 // Including fallback code for HTML5 non supported browsers.
-JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', false, true);
-
-// Make sure jQuery is loaded.
-JHtml::_('jquery.framework');
-
 
 // Add the multiselect style sheet and script files.
 $doc = JFactory::getDocument();
