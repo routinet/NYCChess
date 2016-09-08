@@ -7,15 +7,17 @@
  * @license     Commercial License Only
  */
 
+// No direct access
+defined('_JEXEC') or die('Restricted access');
+
 $doc = JFactory::getDocument();
 // Add datatables
 $doc->addScript("https://cdn.datatables.net/v/dt/dt-1.10.12/fh-3.1.2/datatables.min.js");
 $doc->addScriptDeclaration("jQuery(function(\$) { \$('.nycc-datatable').DataTable(); });");
 $doc->addStyleSheet("https://cdn.datatables.net/v/dt/dt-1.10.12/fh-3.1.2/datatables.min.css");
 
-// No direct access
-defined('_JEXEC') or die('Restricted access');
-$save_route = JRoute::_('index.php?option=com_nyccevents&id=' . (int) $this->item->id);
+$this_id = (int) (empty($this->item->id) ? 0 : $this->item->id);
+$save_route = JRoute::_('index.php?option=com_nyccevents&id=' . $this_id);
 $hash_tabset = 'myTab';
 ?>
 <div class="form-horizontal">
@@ -31,7 +33,7 @@ $hash_tabset = 'myTab';
     </form>
   </div>
   <?php echo JHtml::_('bootstrap.endTab'); ?>
-  <?php if ((int) $this->item->id) { ?>
+  <?php if ($this_id) { ?>
   <?php echo JHtml::_('bootstrap.addTab', $hash_tabset, 'venues', JText::_('Venues')); ?>
   <div class="row-fluid">
     <form method="post" name="adminFormVenues" id="adminFormVenues" action="<?php echo $save_route; ?>">
@@ -41,6 +43,7 @@ $hash_tabset = 'myTab';
       <?php echo JHtml::_('form.token'); ?>
     </form>
     <div class="current-venues">
+      <?php if (count($this->item->venues)) { ?>
       <table id="current-venues" class="nycc-datatable">
         <thead>
         <tr class="venue-record venue-record-header">
@@ -50,11 +53,7 @@ $hash_tabset = 'myTab';
         </tr>
         </thead>
         <tbody>
-      <?php
-      if (count($this->item->venues)) {
-        foreach ($this->item->venues as $venue)
-        {
-      ?>
+      <?php foreach ($this->item->venues as $venue) { ?>
           <tr class="venue-record">
             <td><?php echo $venue->location_name; ?></td>
             <td><?php echo date("Y-m-d", $venue->event_date); ?></td>
@@ -64,18 +63,12 @@ $hash_tabset = 'myTab';
                 echo implode(',', $these_rates);
                 ?></td>
           </tr>
-      <?php
-        }
-      } else {
-      ?>
-          <tr class="venue-record empty-list">
-            <td colspan="3">No venues have been added yet.</td>
-          </tr>
-      <?php
-      }
-      ?>
+      <?php } ?>
         </tbody>
       </table>
+      <?php } else { ?>
+      <div class="empty-venue-list">No venues have been added yet.</div>
+      <?php } ?>
     </div>
   </div>
   <?php echo JHtml::_('bootstrap.endTab'); ?>

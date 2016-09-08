@@ -51,10 +51,10 @@ class NyccEventsViewEvent extends JViewLegacy {
    * @since   0.0.1
    */
   protected function addToolBar() {
-    $isNew = ($this->item->id == 0);
+    $isNew = empty($this->item->id);
     $title = $isNew ? "New" : "Edit";
     JToolBarHelper::title($title, 'Event');
-    JToolBarHelper::apply('event.apply', 'Save');
+    JToolBarHelper::apply('event.apply', 'JTOOLBAR_APPLY');
     JToolBarHelper::cancel('event.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
   }
 }

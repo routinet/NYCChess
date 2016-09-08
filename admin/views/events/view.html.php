@@ -34,10 +34,12 @@ class NyccEventsViewEvents extends JViewLegacy {
     $locations = new NyccEventsModelLocations(array('filter_fields' => array('active' => 1)));
     if ((int) $locations->getTotal() < 1) {
       $link = '<a href="/administrator/index.php?option=com_nyccevents&view=locations">Manage Locations</a>';
+      // TODO: build these links properly
       $app->enqueueMessage("You must have at least one active location before managing events. $link", 'warning');
     }
     $rates = new NyccEventsModelRates(array('filter_fields' => array('active' => 1)));
     if ((int) $rates->getTotal() < 1) {
+      // TODO: build these links properly
       $link = '<a href="/administrator/index.php?option=com_nyccevents&view=rates">Manage Rates</a>';
       $app->enqueueMessage("You must have at least one active rate before managing events. $link", 'warning');
     }

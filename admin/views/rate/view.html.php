@@ -54,7 +54,7 @@ class NyccEventsViewRate extends JViewLegacy {
     $isNew = ($this->item->id == 0);
     $title = $isNew ? "New" : "Edit";
     JToolBarHelper::title($title, 'Rate');
-    JToolBarHelper::apply('rate.apply', JTOOLBAR_APPLY);
+    JToolBarHelper::apply('rate.apply', 'JTOOLBAR_APPLY');
     JToolBarHelper::cancel('rate.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
   }
 }

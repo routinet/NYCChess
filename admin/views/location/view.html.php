@@ -54,7 +54,7 @@ class NyccEventsViewLocation extends JViewLegacy {
     $isNew = ($this->item->id == 0);
     $title = $isNew ? "New" : "Edit";
     JToolBarHelper::title($title, 'Location');
-    JToolBarHelper::apply('location.apply', JTOOLBAR_APPLY);
+    JToolBarHelper::apply('location.apply', 'JTOOLBAR_APPLY');
     JToolBarHelper::cancel('location.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
   }
 }
