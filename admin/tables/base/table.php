@@ -91,7 +91,7 @@ class NyccEventsTableBaseTable extends JTable {
    *   An optional primary key value to load the row by, or an array of fields to match.
    *   If not set the instance property value is used.
    *
-   * @return \JDatabaseQuery
+   * @return \JDatabaseQuery|false
    *
    * @since 0.0.1
    */
@@ -103,6 +103,10 @@ class NyccEventsTableBaseTable extends JTable {
 
     $keys = $this->resolveKeys($keys);
 
+    // If there are no keys, there is nothing to load, so no query to build
+    if (!is_array($keys)) {
+      return false;
+    }
     foreach ($keys as $field => $value) {
       // Check that $field is in the table.
       if (!in_array($field, $fields)) {
@@ -143,6 +147,11 @@ class NyccEventsTableBaseTable extends JTable {
 
     $query = $this->getTableQuery($keys);
 
+    // if query===false, there was nothing to load/no query built
+    if ($query === false) {
+      return true;
+    }
+
     $this->_db->setQuery($query);
 
     $row = $this->_db->loadAssoc();
@@ -169,7 +178,7 @@ class NyccEventsTableBaseTable extends JTable {
    *   An optional primary key value to load the row by, or an array of fields to match.
    *   If not set the instance property value is used.
    *
-   * @return array|null
+   * @return mixed
    *
    * @since 0.0.1
    */
@@ -186,7 +195,7 @@ class NyccEventsTableBaseTable extends JTable {
 
       // If empty primary key there's is no need to load anything
       if ($empty) {
-        return array();
+        return FALSE;
       }
     } elseif (!is_array($keys)) {
       // Load by primary key.

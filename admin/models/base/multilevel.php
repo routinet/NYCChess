@@ -77,7 +77,7 @@ class NyccEventsModelBaseMultilevel extends NyccEventsModelBaseAdmin {
     $event = parent::getItem($pk);
 
     // if parent item exists
-    if ($this->load_objects && $event->id && count($this->_joins)) {
+    if ($this->load_objects && !empty($event->id) && count($this->_joins)) {
       // load each subgroup
       $this->loadAllObjects($event);
     }

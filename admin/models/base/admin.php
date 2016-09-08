@@ -79,7 +79,6 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
    * @since   0.0.1
    */
   public function getForm($data = array(), $loadData = true) {
-
     if (!$this->self_type) {
       throw new Exception("Class " . get_called_class() . " failed to identify itself");
     }
@@ -94,13 +93,15 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
           'load_data' => $loadData
         )
       );
-    } elseif ($data) {
+    } else {
       $form = JForm::getInstance(
         "com_nyccevents.{$this->self_type->name}",
         $this->self_type->name,
-        array( 'control'   => 'jform', )
-        );
+        array('control' => 'jform',)
+      );
+    }
 
+    if ($data) {
       // Allow for additional modification of the form, and events to be triggered.
       // We pass the data because plugins may require it.
       $this->preprocessForm($form, $data);
@@ -129,12 +130,22 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
    * @since   0.0.1
    */
   public function getItem($pk = null) {
+    if (!$pk) {
+      $pk = JFactory::getApplication()->input->get('id');
+    }
     if (count($this->_lookups)) {
       // get the table for this model
       $table = $this->getTable();
 
       // get the query oject used to load data
       $query = $table->getTableQuery($pk);
+
+      // if $query is false, return false
+      if ($query === false) {
+        return false;
+      }
+
+      // add each join to the query
       foreach ($this->_lookups as $key=>$lookup) {
         // array('field'=>'main_location', 'table'=>'locations', 'lookup'=>'name')
         $join = "#__nycc_{$lookup['table']} as {$lookup['table']} ON " .
@@ -147,7 +158,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
       $row = $this->_getList($query);
       if (count($row)) {
         $row = $row[0];
-      } else {
+      } elseif ((int) $pk) {
         NyccEventsHelperUtils::setAppError("getItem() failed to load PK=$pk");
         return false;
       }
