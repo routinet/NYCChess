@@ -39,6 +39,7 @@ CREATE TABLE `#__nycc_events` (
 	ENGINE =MyISAM
 	DEFAULT CHARSET =utf8;
 
+DROP TABLE IF EXISTS `#__nycc_venues`;
 CREATE TABLE `#__nycc_venues` (
 	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`event_id` BIGINT(20) UNSIGNED NOT NULL,
@@ -52,7 +53,7 @@ CREATE TABLE `#__nycc_venues` (
 	DEFAULT CHARSET =utf8;
 
 DROP TABLE IF EXISTS `#__nycc_venue_rates`;
-CREATE TABLE `#__venue_rates` (
+CREATE TABLE `#__nycc_venue_rates` (
 	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`venue_id` BIGINT(20) UNSIGNED NOT NULL,
 	`rate_id` BIGINT(20) UNSIGNED NOT NULL,
