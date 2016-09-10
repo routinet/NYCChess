@@ -60,7 +60,7 @@ class NyccEventsControllerEvent extends JControllerForm {
         // save the record
         $success &= $venue_table->save($bind_array);
 
-        if ($success) {
+        if ($success && count($new_rates)) {
           // save the rates.  Do a mass INSERT to save cycles.
           $query = $dbo->getQuery(TRUE);
           $query->insert('#__nycc_venue_rates')
