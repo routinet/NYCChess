@@ -39,12 +39,14 @@ class NyccEventsControllerEvent extends JControllerForm {
 
     // get the form data
     $new_locs = $this->input->get('venue_location', array(), 'ARRAY');
+    $new_rates = $this->input->get('venue_rates', array(), 'ARRAY');
+
+    // the datepicker field submits as a comma-delimited list of dates.
     $new_dates = $this->input->get('venue_dates', '', 'STRING');
     $new_dates = $new_dates == '' ? array() : explode(',', $new_dates);
     foreach ($new_dates as $k=>$v) {
       $new_dates[$k] = strtotime($v);
     }
-    $new_rates = $this->input->get('venue_rates', array(), 'ARRAY');
 
     // seed the success
     $success = count($new_locs) && count($new_dates);
