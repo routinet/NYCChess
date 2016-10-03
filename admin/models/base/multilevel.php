@@ -122,12 +122,13 @@ class NyccEventsModelBaseMultilevel extends NyccEventsModelBaseAdmin {
       // instantiate
       $list_model = new $list_model_name($list_config);
       $item_model = new $item_model_name($item_config);
-      // set the state limit on the list model (we want all records)
-      $list_model->setState('list.limit', 0);
     } catch (Exception $e) {
       NyccEventsHelperUtils::setAppError($e->getMessage());
       return $this_sub;
     }
+
+    // set the state limit on the list model (we want all records)
+    $list_model->setState('list.limit', 0);
 
     // propagate the load_objects setting
     $item_model->load_objects = (boolean) $load_objects;

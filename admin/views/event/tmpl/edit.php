@@ -39,7 +39,7 @@ $hash_tabset = 'myTab';
     <form method="post" name="adminFormVenues" id="adminFormVenues" action="<?php echo $save_route; ?>">
       <?php echo $this->form->renderField('id'); ?>
       <?php echo $this->form->renderFieldset('add_venues'); ?>
-      <input type="hidden" name="task" value="event.addVenue" />
+      <input type="hidden" name="task" value="event.addVenues" />
       <?php echo JHtml::_('form.token'); ?>
     </form>
     <div class="current-venues">

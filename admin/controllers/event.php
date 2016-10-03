@@ -23,11 +23,10 @@ class NyccEventsControllerEvent extends JControllerForm {
    *
    * @since 0.0.1
    */
-  public function addVenue() {
+  public function addVenues() {
     // initialize the dbo, model, and table
     $dbo = JFactory::getDbo();
     $venue_model = new NyccEventsModelVenue();
-    $venue_table = $venue_model->getTable();
 
     // set up the initial values.  need id=0 to make a new record
     $id = $this->input->get('id', 'INT');
@@ -58,19 +57,21 @@ class NyccEventsControllerEvent extends JControllerForm {
         $bind_array['event_date'] = $val2;
 
         // save the record
-        $success &= $venue_table->save($bind_array);
+        $success &= $venue_model->save($bind_array);
 
+        // If no errors yet, save the rate records
         if ($success && count($new_rates)) {
           // save the rates.  Do a mass INSERT to save cycles.
           $query = $dbo->getQuery(TRUE);
           $query->insert('#__nycc_venue_rates')
             ->columns('venue_id,rate_id');
           foreach ($new_rates as $key3=>$val3) {
-            $query->values($venue_table->id.','.$val3);
+            $query->values($venue_model->getState('venue.id') . ',' . $val3);
           }
           $dbo->setQuery($query);
           $success &= $dbo->execute();
         }
+
         // If an error occurred, just leave
         if (!$success) {
           break 2;

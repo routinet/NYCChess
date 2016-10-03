@@ -38,6 +38,21 @@ class NyccEventsModelBaseList extends JModelList {
   }
 
   /**
+   * Sets a filter parameter.  If the filter parameter already exists, it
+   * will be overwritten with the new value.  This can effectively erase a
+   * filter if the new value is NULL - it will not be considered active.
+   *
+   * @param      $filter_name
+   * @param null $filter_value
+   *
+   *
+   * @since 0.0.1
+   */
+  public function setFilter($filter_name, $filter_value = NULL) {
+    $this->filter_fields[$filter_name] = $filter_value;
+  }
+
+  /**
    * Override in child to modify the query object
    *
    * @param JDatabaseQuery object
@@ -49,7 +64,10 @@ class NyccEventsModelBaseList extends JModelList {
 
   /**
    * Method to build an SQL query to load the list data.
-   * TODO: this method should use $this->state properly
+   * TODO: this method should use $this->state properly..  hrrmm.. maybe not..
+   * TODO: State is only populated on construct.  This method allows for
+   * TODO: dynamic alterations of filter_fields.  Maybe a combination of both
+   * TODO: in a cascade?
    *
    * @since  0.0.1
    * @return      string  An SQL query

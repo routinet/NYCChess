@@ -110,11 +110,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
       $form->bind($data);
     }
 
-    if (empty($form)) {
-      return false;
-    }
-
-    return $form;
+    return empty($form) ? false : $form;
   }
 
   /**

@@ -34,4 +34,5 @@ class NyccEventsModelVenue extends NyccEventsModelBaseMultilevel {
     );
     parent::__construct($config);
   }
+
 }
