@@ -96,6 +96,11 @@ class NyccEventsTableBaseTable extends JTable {
    * @since 0.0.1
    */
   public function getTableQuery($keys = null) {
+    // If there are no keys, there is nothing to load, so no query to build
+    if (!is_array($keys)) {
+      return false;
+    }
+
     $query = $this->_db->getQuery(true)
       ->select('main.*')
       ->from("{$this->_tbl} as main");
@@ -103,10 +108,6 @@ class NyccEventsTableBaseTable extends JTable {
 
     $keys = $this->resolveKeys($keys);
 
-    // If there are no keys, there is nothing to load, so no query to build
-    if (!is_array($keys)) {
-      return false;
-    }
     foreach ($keys as $field => $value) {
       // Check that $field is in the table.
       if (!in_array($field, $fields)) {
@@ -124,18 +125,15 @@ class NyccEventsTableBaseTable extends JTable {
    * separate method.  This is necessary to allow for generating the base query
    * for a table, and allowing other calling code to alter the table, e.g.,
    * to add relational joins, etc.
-   * TODO: is this going to cause problems with saving data?
    *
-   * @param   mixed    $keys   An optional primary key value to load the row by, or an array of fields to match.
-   *                           If not set the instance property value is used.
+   * @param   mixed $keys      An optional primary key value to load the row by, or
+   *                           an array of fields to match. If not set the instance
+   *                           property value is used.
    * @param   boolean  $reset  True to reset the default values before loading the new row.
    *
    * @return  boolean  True if successful. False if row not found.
    *
    * @since   0.0.1
-   * @throws  InvalidArgumentException
-   * @throws  RuntimeException
-   * @throws  UnexpectedValueException
    */
   public function load($keys = null, $reset = true) {
     // Implement JObservableInterface: Pre-processing by observers

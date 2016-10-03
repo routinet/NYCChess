@@ -54,25 +54,12 @@ class NyccEventsControllerEvent extends JControllerForm {
     // for each location, for each day, add one record
     foreach ($new_locs as $key=>$val) {
       foreach ($new_dates as $key2=>$val2) {
-        // set the location and dat
+        // set the location and date
         $bind_array['location_id'] = $val;
         $bind_array['event_date'] = $val2;
 
-        // save the record
-        $success &= $venue_model->save($bind_array);
-
-        // If no errors yet, save the rate records
-        if ($success && count($new_rates)) {
-          // save the rates.  Do a mass INSERT to save cycles.
-          $query = $dbo->getQuery(TRUE);
-          $query->insert('#__nycc_venue_rates')
-            ->columns('venue_id,rate_id');
-          foreach ($new_rates as $key3=>$val3) {
-            $query->values($venue_model->getState('venue.id') . ',' . $val3);
-          }
-          $dbo->setQuery($query);
-          $success &= $dbo->execute();
-        }
+        // Add the venue
+        $success &= $venue_model->addFullVenue($bind_array, $new_rates);
 
         // If an error occurred, just leave
         if (!$success) {
