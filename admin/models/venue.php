@@ -53,12 +53,15 @@ class NyccEventsModelVenue extends NyccEventsModelBaseMultilevel {
 
     // If all good, save the rate records
     if ($ret && count($rates)) {
+      // Get the autoincrement ID
+      $venue_id = (int) $this->getState('venue.id');
+
       // Save the rates.  Do a mass INSERT to save cycles.
       $query = $dbo->getQuery(TRUE);
       $query->insert('#__nycc_venue_rates')
         ->columns('venue_id,rate_id');
       foreach ($rates as $key=>$val) {
-        $query->values($this->getState('venue.id') . ',' . $val);
+        $query->values($venue_id . ',' . (int) $val);
       }
       $dbo->setQuery($query);
       $ret &= $dbo->execute();
