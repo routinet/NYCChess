@@ -37,7 +37,11 @@
         <filename>index.html</filename>
         <filename>nyccevents.php</filename>
         <filename>controller.php</filename>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+        <folder>layouts</folder>
         <folder>models</folder>
+        <folder>tables</folder>
         <folder>views</folder>
     </files>
 

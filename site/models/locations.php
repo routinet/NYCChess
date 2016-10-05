@@ -9,5 +9,12 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-?>
-<h1><?php echo $this->msg; ?></h1>
+
+/**
+ * Locations List Model
+ *
+ * @since  0.0.1
+ */
+class NyccEventsModelLocations extends NyccEventsModelBaseList {
+  protected $_table_name = 'locations';
+}

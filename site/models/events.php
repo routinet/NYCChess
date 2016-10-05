@@ -11,14 +11,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * NYCC Events Component Controller
+ * Events List Model
  *
  * @since  0.0.1
  */
-class NyccEventsController extends JControllerLegacy {
-
-  public function __construct(array $config) {
-    parent::__construct($config);
-    $this->name = 'NyccEvents';
-  }
+class NyccEventsModelEvents extends NyccEventsModelBaseList {
+  protected $_table_name = 'events';
 }

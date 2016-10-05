@@ -96,17 +96,15 @@ class NyccEventsTableBaseTable extends JTable {
    * @since 0.0.1
    */
   public function getTableQuery($keys = null) {
-    // If there are no keys, there is nothing to load, so no query to build
-    if (!is_array($keys)) {
-      return false;
-    }
+    // Standardize the passed keys
+    $keys = $this->resolveKeys($keys);
 
+    // Generate the base query for this table.
     $query = $this->_db->getQuery(true)
       ->select('main.*')
       ->from("{$this->_tbl} as main");
     $fields = array_keys($this->getProperties());
 
-    $keys = $this->resolveKeys($keys);
 
     foreach ($keys as $field => $value) {
       // Check that $field is in the table.
@@ -181,33 +179,34 @@ class NyccEventsTableBaseTable extends JTable {
    * @since 0.0.1
    */
   public function resolveKeys($keys = null) {
+    // If the key is empty, check to see if the current key is populated.
+    // If yes, use it.  If not, leave - nothing to load.
     if (empty($keys)) {
-      $empty = true;
       $keys  = array();
-
-      // If empty, use the value of the current key
       foreach ($this->_tbl_keys as $key) {
-        $empty      = $empty && empty($this->$key);
-        $keys[$key] = $this->$key;
+        if (!empty($this->$key)) {
+          $keys[$key] = $this->$key;
+        }
       }
-
-      // If empty primary key there's is no need to load anything
-      if ($empty) {
-        return FALSE;
+      if (!count($keys)) {
+        return true;
       }
-    } elseif (!is_array($keys)) {
-      // Load by primary key.
+    }
+    // If keys is not an array, try to load by the primary key.  If there
+    // are multiple PK fields, or none, something has gone wrong.
+    elseif (!is_array($keys)) {
       $keyCount = count($this->_tbl_keys);
-
       if ($keyCount) {
         if ($keyCount > 1) {
           throw new InvalidArgumentException('Table has multiple primary keys specified, only one primary key value provided.');
         }
         $keys = array($this->getKeyName() => $keys);
-      } else {
+      }
+      else {
         throw new RuntimeException('No table keys defined.');
       }
     }
+
     return $keys;
   }
 }

@@ -11,33 +11,32 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * HTML View class for the NYCCEvents Component
+ * Site Event View
  *
  * @since  0.0.1
  */
-class NyccEventsViewLanding extends JViewLegacy
-{
+class NyccEventsViewEvent extends JViewLegacy {
+  /**
+   * View form
+   *
+   * @since  0.0.1
+   */
+  protected $form = null;
 
   /**
-   * Display the Landing view
+   * Display the Event view
    *
+   * @since  0.0.1
    * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
    *
    * @return  void
    */
-  function display($tpl = null)
-  {
-    // Assign data to the view
-    $this->msg = $this->get('Msg');
+  public function display($tpl = null) {
+    // Get the Data and load it into the form
+    $this->item = $this->get('Item');
 
-    // Check for errors.
-    if (count($errors = $this->get('Errors')))
-    {
-      JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
-
-      return false;
-    }
-
-    // Display the view
+    // Display the template
     parent::display($tpl);
-  }}
+  }
+
+}

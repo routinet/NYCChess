@@ -11,7 +11,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Event View
+ * Admin Event View
  *
  * @since  0.0.1
  */

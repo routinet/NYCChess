@@ -7,18 +7,8 @@
  * @license     Commercial License Only
  */
 
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
-/**
- * NYCC Events Component Controller
- *
- * @since  0.0.1
- */
-class NyccEventsController extends JControllerLegacy {
-
-  public function __construct(array $config) {
-    parent::__construct($config);
-    $this->name = 'NyccEvents';
-  }
-}
+?>
+<pre><?php echo var_export($this->item,1); ?></pre>

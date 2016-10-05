@@ -7,8 +7,14 @@
  * @license     Commercial License Only
  */
 
-
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-?>
-<h1><?php echo $this->msg; ?></h1>
+
+/**
+ * Venue Rates List Model
+ *
+ * @since  0.0.1
+ */
+class NyccEventsModelVenueRates extends NyccEventsModelBaseList {
+  protected $_table_name = 'venue_rates';
+}

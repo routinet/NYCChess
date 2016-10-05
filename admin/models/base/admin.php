@@ -129,6 +129,8 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
     if (!$pk) {
       $pk = JFactory::getApplication()->input->get('id');
     }
+    $pk = (!empty($pk)) ? $pk : (int) $this->getState($this->getName() . '.id');
+
     if (count($this->_lookups)) {
       // get the table for this model
       $table = $this->getTable();
@@ -145,7 +147,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
       foreach ($this->_lookups as $key=>$lookup) {
         // array('field'=>'main_location', 'table'=>'locations', 'lookup'=>'name')
         $join = "#__nycc_{$lookup['table']} as {$lookup['table']} ON " .
-          /*$table->getTableName() . */"main.{$lookup['field']}={$lookup['table']}.id";
+          "main.{$lookup['field']}={$lookup['table']}.id";
         $select = "{$lookup['table']}.{$lookup['lookup']} " .
           "as {$key}_{$lookup['lookup']}";
         $query->join('INNER', $join)->select($select);

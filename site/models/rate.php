@@ -11,14 +11,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * NYCC Events Component Controller
+ * Rate Model
  *
  * @since  0.0.1
  */
-class NyccEventsController extends JControllerLegacy {
-
-  public function __construct(array $config) {
-    parent::__construct($config);
-    $this->name = 'NyccEvents';
-  }
+class NyccEventsModelRate extends NyccEventsModelBaseAdmin {
 }
