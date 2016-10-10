@@ -25,8 +25,8 @@ class NyccEventsModelVenues extends NyccEventsModelBaseList {
    * @since 0.0.1
    */
   protected function addQueryRelations(&$query) {
-    $query->join('INNER',"#__nycc_events events on events.id=main.event_id")
-      ->join('INNER',"#__nycc_locations locations on locations.id=main.location_id")
+    $query->join('INNER',"#__nycc_events events on events.id=main.event_id AND events.active=1")
+      ->join('INNER',"#__nycc_locations locations on locations.id=main.location_id AND locations.active=1")
       ->select(array("events.name as event_name","locations.name as location_name"));
   }
 

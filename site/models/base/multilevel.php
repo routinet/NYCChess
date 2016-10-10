@@ -134,8 +134,11 @@ class NyccEventsModelBaseMultilevel extends NyccEventsModelBase {
     $item_model->load_objects = (boolean) $load_objects;
 
     // iterate through found items, and create objects for them
-    foreach ($list_model->getItems($list_config) as $key=>$val) {
-      $this_sub[] = $item_model->getItem($val->id);
+    $list_of_models = $list_model->getItems($list_config);
+    if (is_array($list_of_models)) {
+      foreach ($list_of_models as $key => $val) {
+        $this_sub[] = $item_model->getItem($val->id);
+      }
     }
 
     return $this_sub;

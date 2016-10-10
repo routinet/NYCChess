@@ -34,6 +34,13 @@ class NyccEventsModelBaseList extends JModelList {
     if (!$this->_table_name) {
       throw new RuntimeException(get_called_class() . " failed to identify its table");
     }
+
+    // Set the active filter if it does not already exist
+    if (!isset($config['filter_fields'])) {
+      $config['filter_fields'] = array();
+    }
+    $config['filter_fields'] += array('active'=>'1');
+
     parent::__construct($config);
   }
 
