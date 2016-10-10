@@ -25,5 +25,12 @@ class NyccEventsViewMenu extends JViewLegacy {
    * @return  void
    *
    */
+  public function display($tpl = null) {
+    // Get the link to config for this component.
+    $this->config_url = 'index.php?option=com_config&amp;view=component&amp;component='
+      . JFactory::getApplication()->input->get('option');
 
+    // Display the template
+    parent::display($tpl);
+  }
 }

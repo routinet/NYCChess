@@ -51,11 +51,13 @@
             <menu view="locations" alt="Locations Manager">Locations</menu>
             <menu view="rates" alt="Rates Manager">Rates</menu>
             <menu view="events" alt="Events Manager">Events</menu>
+            <menu link="/administrator/index.php?option=com_config&amp;view=component&amp;component=com_nyccevents">Config</menu>
         </submenu>
         <files folder="admin">
             <filename>index.html</filename>
             <filename>nyccevents.php</filename>
             <filename>controller.php</filename>
+            <filename>config.xml</filename>
             <folder>controllers</folder>
             <folder>helpers</folder>
             <folder>layouts</folder>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset
+            name="events"
+            label="Event"
+            description="Configure options for an event detail view."
+    >
+        <field
+                name="show_upcoming_venues"
+                type="radio"
+                label="Show Upcoming Venues"
+                description="Should an event detail view display a list of upcoming venues found for the event?"
+                class="btn-group btn-group-yesno"
+                default="1">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </field>
+        <field
+                name="show_x_upcoming_venues"
+                type="integer"
+                label="Number of Venues"
+                description="How many upcoming venues should be listed?"
+                first="1"
+                last="30"
+                step="1"
+                default="5" />
+    </fieldset>
+</config>
