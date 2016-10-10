@@ -50,7 +50,7 @@ abstract class NyccEventsHelperUtils {
    */
   public static function addFilterConditions(JDatabaseQuery $query, Array $conditions) {
     foreach ($conditions as $key=>$val) {
-      $query = static::addCondition($query, $key, $val);
+      $query = static::addCondition($query, 'main.' . $key, $val);
     }
     return $query;
   }
@@ -113,7 +113,12 @@ abstract class NyccEventsHelperUtils {
     }
 
     // build the condition
-    $condition = '`' . $query->e((string) $field) . '` '
+    $condition = '';
+    $field_parts = explode('.', $field);
+    if (count($field_parts) > 1) {
+      $condition = '`' . array_shift($field_parts) . '`.';
+    }
+    $condition .= '`' . $query->e((string) $field_parts[0]) . '` '
       . $operator . ($clause_value ? " $clause_value" : '');
 
     return $query->where($condition, $glue);
