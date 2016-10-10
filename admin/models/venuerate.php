@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class NyccEventsModelVenueRate extends NyccEventsModelBaseMultilevel {
+class NyccEventsModelVenueRate extends NyccEventsModelBaseMultilevelAdmin {
   /**
    * Constructor.
    *

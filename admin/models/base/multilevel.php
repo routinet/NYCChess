@@ -19,7 +19,7 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since 0.0.1
  */
-class NyccEventsModelBaseMultilevel extends NyccEventsModelBaseAdmin {
+class NyccEventsModelBaseMultilevelAdmin extends NyccEventsModelBaseAdmin {
 
   /**
    * Internal store of subobjects definitions.  Each element in the array is an array of:
