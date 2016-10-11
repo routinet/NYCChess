@@ -33,6 +33,7 @@ CREATE TABLE `#__nycc_events` (
 	`short_description` VARCHAR(250) NOT NULL,
 	`long_description` TEXT NOT NULL,
 	`schedule` TEXT NOT NULL,
+	`image_path` VARCHAR(255) NOT NULL DEFAULT '',
 	`active` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
 )

@@ -11,15 +11,18 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-$item = $this->item;
+$item = $this->item->data;
 ?>
 <div class="nycchess-item-detail-container">
   <div class="nycchess-item-detail-title"><?php echo htmlentities($item->name, ENT_QUOTES); ?></div>
+  <?php if ($item->image_path) { ?>
+  <div class="nycchess-item-detail-image"><img src="/<?php echo $item->image_path; ?>" alt="<?php
+    echo $item->name; ?>" /></div><?php } ?>
   <div class="nycchess-item-detail-short-description"><?php
     echo htmlentities($item->short_description, ENT_QUOTES);
     ?></div>
   <div class="nycchess-item-detail-primary-location"><?php
-    echo htmlentities($item->main_location_object->name, ENT_QUOTES);
+    echo htmlentities($this->item->location->name, ENT_QUOTES);
     ?></div>
   <div class="nycchess-item-detail-long-description"><?php
     echo $item->long_description;
@@ -37,4 +40,4 @@ $item = $this->item;
   </div>
   <?php } ?>
 </div>
-<pre><?php echo var_export($item,1); ?></pre>
+<pre><?php echo var_export($this->item,1); ?></pre>

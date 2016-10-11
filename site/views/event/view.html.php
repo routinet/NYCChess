@@ -33,11 +33,11 @@ class NyccEventsViewEvent extends JViewLegacy {
    */
   public function display($tpl = null) {
     // Get the Data and load it into the form
-    $this->item = $this->get('Item');
+    $this->item = (object) ['data'=>$this->get('Item')];
 
     // Get the details of the primary location
-    $this->item->main_location_object = JModelLegacy::getInstance('location', 'NyccEventsModel')
-      ->getItem($this->item->main_location);
+    $this->item->location = JModelLegacy::getInstance('location', 'NyccEventsModel')
+      ->getItem($this->item->data->main_location);
 
     // Display the template
     parent::display($tpl);

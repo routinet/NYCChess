@@ -29,6 +29,13 @@
                 query="SELECT id,name from #__nycc_locations ORDER BY name"
         />
         <field
+                name="image_path"
+                type="media"
+                label="Associated Image"
+                description="(Optional) Select an image of this location."
+                directory="/"
+        />
+        <field
                 name="short_description"
                 type="textarea"
                 label="Short Description"
