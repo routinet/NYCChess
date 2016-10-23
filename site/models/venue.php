@@ -15,25 +15,11 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class NyccEventsModelVenue extends NyccEventsModelBaseMultilevel {
-  /**
-   * Constructor.
-   *
-   * @param   array  $config  An optional associative array of configuration settings.
-   *
-   * @see     JModelLegacy
-   * @since   0.0.1
-   */
-  public function __construct($config = array()) {
-    $this->_joins = array(
-      'rates' => array('list_model'=>'Venuerates', 'item_model'=>'Venuerate', 'fk'=>'venue_id'),
-    );
-    $this->_lookups = array(
-      'event' => array('field'=>'event_id', 'table'=>'events', 'lookup'=>'name'),
-      'location' => array('field'=>'location_id', 'table'=>'locations', 'lookup'=>'name'),
-    );
-    parent::__construct($config);
-  }
+class NyccEventsModelVenue extends NyccEventsModelBase {
+  protected $_lookups = array(
+    'event' => array('field'=>'event_id', 'table'=>'events', 'lookup'=>'name'),
+    'location' => array('field'=>'location_id', 'table'=>'locations', 'lookup'=>'name'),
+  );
 
   /**
    * @param       $data

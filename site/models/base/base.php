@@ -18,8 +18,13 @@ defined('_JEXEC') or die('Restricted access');
 abstract class NyccEventsModelBase extends JModelLegacy {
 
   /**
-   * Holds definitions of lookups fields.
-   * Event Example: array('field'=>'main_location', 'table'=>'locations', 'lookup'=>'name')
+   * Holds definitions of lookups fields.  It is keyed by identifiers for
+   * the resulting fields.  Each element is itself an array, consisting of:
+   *     'field'  => <FK field>
+   *     'table'  => <Lookup table>
+   *     'lookup' => <Lookup table field name>
+   * Event Example:
+   *   'event' => array('field'=>'main_location', 'table'=>'locations', 'lookup'=>'name')
    *
    * @var array
    * @since 0.0.1

@@ -15,5 +15,5 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class NyccEventsModelLocation extends NyccEventsModelBaseMultilevel {
+class NyccEventsModelLocation extends NyccEventsModelBase {
 }
