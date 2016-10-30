@@ -15,4 +15,21 @@ class NyccEventsObjVenue extends NyccEventsObjBase {
     'rates' => array('list_model'=>'Venuerates', 'item_model'=>'Venuerate', 'fk'=>'venue_id'),
     );
 
+  public function getRateLabels($refresh = false) {
+    $cached = $this->_get_cache('rate_labels');
+
+    if (is_null($cached) || $refresh) {
+      $cached = array();
+      if (is_array($this->_child_data['rates'])) {
+        foreach ($this->_child_data['rates'] as $k1 => $rate) {
+          $cached[$rate->rate_id] = $rate->rate_label;
+          logit("setting cached=\n".var_export($cached,1));
+        }
+      }
+      asort($cached);
+      $this->_set_cache('rate_labels', $cached);
+    }
+
+    return $cached;
+  }
 }

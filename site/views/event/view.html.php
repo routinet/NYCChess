@@ -36,6 +36,7 @@ class NyccEventsViewEvent extends JViewLegacy {
     $this->item->loadPrimaryLocation();
     $this->all_locations = $this->item->getVenueLocations();
     $this->venues_by_rate = $this->item->getVenuesByRate();
+    $this->all_rates = $this->item->getVenueRateLabels();
 
     // Display the template
     parent::display($tpl);

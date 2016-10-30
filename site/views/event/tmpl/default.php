@@ -49,39 +49,42 @@ $item = $this->item;
   <?php }
   if (count($this->venues_by_rate['_all'])) { ?>
   <div class="nycchess-item-detail-venues">
-    <h3>Venues</h3>
-    <div class="nycchess-item-detail-venue-filters">
-      <span class="venue-filter venue-filter-all">All</span>
-      <span class="venue-filter venue-filter-week">Full Week</span>
-      <span class="venue-filter venue-filter-extended">Extended</span>
-      <span class="venue-filter venue-filter-extended">VIP</span>
-    </div>
-    <div class="filter-text"></div>
-    <table class="nycc-datatable table-venue-list" id="venue-register-list">
-      <thead>
-      <tr>
-        <th>Location</th>
-        <th>Date</th>
-        <th>Availability</th>
-      </tr>
-      </thead>
-      <tbody>
-      <?php
-      foreach ($this->venues_by_rate['_all'] as $key=>$venue) {
-        $all_rates = array();
-        foreach ($venue->rates as $key2 => $rate) {
-          $all_rates[$rate->rate_label] = true;
+    <form name="nycchess-item-detail-register-venue" method="POST">
+      <input type="submit" name="register_venue_submit" value="Register Now!" />
+      <h3>Venues</h3>
+      <div class="nycchess-item-detail-venue-filters">
+        <span class="venue-filter venue-filter-all">All</span>
+        <?php
+        foreach ($this->all_rates as $key=>$value) {
+          $rate_name = preg_replace('/[^a-z0-9]/i', '-', strtolower($value));
+          echo '<span class="venue-filter venue-filter-' . $rate_name .
+            '">' . htmlentities($value, ENT_QUOTES) . '</span>';
         }
-        $these_rates = array_unique(array_keys($all_rates));
-        sort($these_rates, SORT_NATURAL); ?>
+        ?>
+      </div>
+      <table class="nycc-datatable table-venue-list" id="venue-register-list">
+        <thead>
         <tr>
-          <td><?php echo $venue->location_name; ?></td>
-          <td><?php echo date("Y-m-d", $venue->event_date); ?></td>
-          <td><?php echo implode(', ', $these_rates); ?></td>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Availability</th>
+          <th></th>
         </tr>
-      <?php } ?>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <?php foreach ($this->venues_by_rate['_all'] as $key=>$venue) { ?>
+          <tr>
+            <td><?php echo $venue->location_name; ?></td>
+            <td><?php echo date("Y-m-d", $venue->event_date); ?></td>
+            <td><?php echo implode(', ', $venue->getRateLabels()); ?></td>
+            <td>
+              <input type="checkbox" name="register_venue" class="register-venue-button" value="<?php echo $venue->id; ?>" id="register_<?php echo $venue->id; ?>" /><label for="register_<?php echo $venue->id; ?>" class="register-venue-label">select</label>
+            </td>
+          </tr>
+        <?php } ?>
+        </tbody>
+      </table>
+    </form>
   </div>
   <?php } ?>
 </div>

@@ -13,7 +13,6 @@
         if (filter) {
             filter = '"('+filter+')"';
         }
-        $('.filter-text').html(filter);
         the_table.DataTable().column(2).search(filter, true, true, false).draw();
     };
 
@@ -30,6 +29,10 @@
             }
             window.NYCC.filterVenues();
         });
+
+        $('.register_venue_label').on('click', function(e) {
+            $(e.target).toggleClass('selected');
+        })
 
     });
 

@@ -59,6 +59,33 @@ abstract class NyccEventsObjBase {
   public $load_children = NYCCEVENTS_LOAD_RECURSIVE;
 
   /**
+   * General purpose internal cache
+   *
+   * @var array()
+   * @since 0.0.1
+   */
+  protected $_cache = array();
+
+  /**
+   * @param string $index The (optional) index to use
+   * @param mixed $default The default value to return if index is not found
+   * @return mixed
+   * @since 0.0.1
+   */
+  protected function _get_cache($index = '', $default = NULL) {
+    return array_key_exists($index, $this->_cache) ? $this->_cache[$index] : $default;
+  }
+
+  /**
+   * @param array $value The value to set
+   * @param string $index The (optional) index to use
+   * @since 0.0.1
+   */
+  protected function _set_cache($value, $index = '') {
+    $this->_cache[$index] = $value;
+  }
+
+  /**
    * NyccEventsObjBase constructor.
    *
    * @param array $config

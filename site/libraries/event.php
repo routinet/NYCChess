@@ -52,4 +52,22 @@ class NyccEventsObjEvent extends NyccEventsObjBase {
 
     return $ret;
   }
+
+  public function getVenueRateLabels($refresh = false) {
+    $cached = $this->_get_cache('rate_labels');
+
+    if (is_null($cached) || $refresh) {
+      $cached = array();
+      if (is_array($this->_child_data['venues'])) {
+        foreach ($this->_child_data['venues'] as $k => $venue) {
+          $cached += $venue->getRateLabels();
+          logit("setting all cached=\n".var_export($cached,1));
+        }
+      }
+      asort($cached);
+      $this->_set_cache($cached);
+    }
+
+    return $cached;
+  }
 }

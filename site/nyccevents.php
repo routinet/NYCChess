@@ -29,8 +29,8 @@ JForm::addFormPath(JPATH_COMPONENT . '/models/forms');
 JForm::addFieldPath(JPATH_COMPONENT . '/models/forms/fields');
 
 /*JFactory::getDocument()->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/nycc-base.js');
-JFactory::getDocument()->addStyleSheet('/media/' . basename(JPATH_COMPONENT) . '/css/nycc-base.css');
 */
+JFactory::getDocument()->addStyleSheet('/media/' . basename(JPATH_COMPONENT) . '/css/nycc-base.css');
 
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('NyccEvents');
