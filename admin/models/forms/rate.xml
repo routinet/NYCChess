@@ -12,19 +12,26 @@
                 default=""
         />
         <field
-                name="price"
+                name="active"
+                type="checkbox"
+                label="Active"
+                description="Is rate active?"
+                default="0"
+        />
+        <field
+                name="modifier"
                 type="number"
                 label="Price"
-                description="Price for this rate"
+                description="Price modifier for this rate"
                 size="5"
                 class="inputbox"
                 default="0.00"
         />
         <field
-                name="active"
+                name="is_multiplier"
                 type="checkbox"
-                label="Active"
-                description="Is rate active?"
+                label="Treat as Percentage?"
+                description="If checked, the event's base price is multiplied by this value.  If not checked, this value is added to the price as a flat rate.  This value can be negative if this box is not checked."
                 default="0"
         />
     </fieldset>

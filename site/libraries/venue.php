@@ -26,7 +26,7 @@ class NyccEventsObjVenue extends NyccEventsObjBase {
         }
       }
       asort($cached);
-      $this->_set_cache('rate_labels', $cached);
+      $this->_set_cache($cached, 'rate_labels');
     }
 
     return $cached;
