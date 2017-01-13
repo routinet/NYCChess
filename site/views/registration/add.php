@@ -49,7 +49,7 @@ $item = $this->item;
   <?php }
   if (count($this->venues_by_rate['_all'])) { ?>
   <div class="nycchess-item-detail-venues">
-    <form name="nycchess-item-detail-register-venue" action="/index.php?option=com_nyccevents&task=registration.create" method="POST">
+    <form name="nycchess-item-detail-register-venue" method="POST">
       <input type="submit" name="register_venue_submit" value="Register Now!" />
       <h3>Venues</h3>
       <div class="nycchess-item-detail-venue-filters">
@@ -78,14 +78,12 @@ $item = $this->item;
             <td><?php echo date("Y-m-d", $venue->event_date); ?></td>
             <td><?php echo implode(', ', $venue->getRateLabels()); ?></td>
             <td>
-              <input type="checkbox" name="register_venue[]" class="register-venue-button" value="<?php echo $venue->id; ?>" id="register_<?php echo $venue->id; ?>" /><label for="register_<?php echo $venue->id; ?>" class="register-venue-label">select</label>
+              <input type="checkbox" name="register_venue" class="register-venue-button" value="<?php echo $venue->id; ?>" id="register_<?php echo $venue->id; ?>" /><label for="register_<?php echo $venue->id; ?>" class="register-venue-label">select</label>
             </td>
           </tr>
         <?php } ?>
         </tbody>
       </table>
-      <input type="hidden" name="task" value="registration.create" />
-      <input type="hidden" name="option" value="com_nyccevents" />
     </form>
   </div>
   <?php } ?>

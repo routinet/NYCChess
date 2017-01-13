@@ -1,0 +1,36 @@
+<?php
+/**
+ * @package     NYCCEvents
+ * @subpackage  com_nyccevents
+ *
+ * @copyright   Copyright (C) 2016 Steve Binkowski.  All Rights Reserved.
+ * @license     Commercial License Only
+ */
+
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+
+/**
+ * NYCC Events Component Controller
+ *
+ * @since  0.0.1
+ */
+class NyccEventsControllerRegistration extends JControllerLegacy {
+  protected $default_view = 'add';
+  
+  public function __construct(array $config) {
+    parent::__construct($config);
+    $this->name = 'NyccEvents';
+  }
+
+  public function create() {
+      //logtrace();
+      echo ('in reg');
+      die(var_export($_POST,1));
+  }
+
+  public function display($cachable = false, $urlparams = array()) {
+      // This should determine the layout (parent does this)
+      //
+  }
+}
