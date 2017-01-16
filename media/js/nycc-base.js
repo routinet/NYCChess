@@ -22,7 +22,7 @@ NYCC.addData = function(elem) {
         $e.data('NYCC', new this.data_object);
     }
     return $e.data('NYCC');
-}
+};
 
 /**
  * The custom NYCC data object.

@@ -35,7 +35,7 @@ class NyccEventsViewLocations extends JViewLegacy {
     {
       JError::raiseError(500, implode('<br />', $errors));
 
-      return false;
+      return;
     }
 
     // Add the toolbar.

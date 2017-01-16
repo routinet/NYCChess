@@ -21,8 +21,8 @@ var cAJAX = cAJAX || {};
     D.log = function() {
         if (D.debug_logger && arguments.length) {
             for (var i=0; i<arguments.length; i++) { console.log(arguments[i]); }
-        }
-    }
+        };
+    };
 
     /* Simple management of AJAX calls
      This handler utilizes the request cache cAJAX.jqxhr, and formats an
@@ -54,7 +54,7 @@ var cAJAX = cAJAX || {};
         var oo = $.extend( { type:t, dataType:'json', url:D.ajax_url }, o, { complete:D.handlerDoAjax } );
         D.jqxhr[n] = $.ajax(oo);
         D.jqxhr[n].userHandler = allcb;
-    }
+    };
 
     /* In case an AJAX call fails
 
@@ -62,7 +62,7 @@ var cAJAX = cAJAX || {};
      */
     D.failAlert = function(m) {
         alert(m);
-    }
+    };
 
     /* handler for general AJAX
      A custom AJAX return handler.  When an AJAX call is executed
@@ -84,7 +84,7 @@ var cAJAX = cAJAX || {};
         } else {
             D.log('---AJAX call has no custom handlers');
         }
-    }
+    };
 
     /* event handler for word hint return
      Currently unused by jquery-ui control
@@ -95,7 +95,7 @@ var cAJAX = cAJAX || {};
      */
     D.handlerWordFragment = function(r) {
         D.word_fragments = r.words.map(function(v,i){return v;});
-    }
+    };
 
     /* submit word hint to AJAX handler
      Currently unused by jquery-ui control.
