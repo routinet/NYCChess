@@ -54,7 +54,7 @@ $doc->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/datepicker.js');
 
 ?>
 <div class="nycc-datepicker-container">
-	<div class=""nycc-datepicker-label">
+	<div class="nycc-datepicker-label">
 		<?php echo $input['label']; ?>
 		<input type="hidden" class="nycc-datepicker-value" id="<?php echo $input['id']; ?>" name="<?php echo $input['name']; ?>" />
 	</div>
