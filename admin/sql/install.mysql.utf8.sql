@@ -10,8 +10,8 @@ CREATE TABLE `#__nycc_locations` (
 	`active` TINYINT(4) NOT NULL,
 	PRIMARY KEY (`id`)
 )
-	ENGINE =MyISAM
-	DEFAULT CHARSET =utf8;
+	ENGINE=MyISAM
+	COLLATE='utf8mb4_general_ci';
 
 DROP TABLE IF EXISTS `#__nycc_rates`;
 CREATE TABLE `#__nycc_rates` (
@@ -23,7 +23,7 @@ CREATE TABLE `#__nycc_rates` (
 	PRIMARY KEY (`id`)
 )
 	ENGINE=MyISAM
-	DEFAULT CHARSET =utf8;
+	COLLATE='utf8mb4_general_ci';
 
 DROP TABLE IF EXISTS `#__nycc_events`;
 CREATE TABLE `#__nycc_events` (
@@ -37,8 +37,8 @@ CREATE TABLE `#__nycc_events` (
 	`active` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
 )
-	ENGINE =MyISAM
-	DEFAULT CHARSET =utf8;
+	ENGINE=MyISAM
+	COLLATE='utf8mb4_general_ci';
 
 DROP TABLE IF EXISTS `#__nycc_venues`;
 CREATE TABLE `#__nycc_venues` (
@@ -50,8 +50,8 @@ CREATE TABLE `#__nycc_venues` (
 	`active` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
 )
-	ENGINE =MyISAM
-	DEFAULT CHARSET =utf8;
+	ENGINE=MyISAM
+	COLLATE='utf8mb4_general_ci';
 
 DROP TABLE IF EXISTS `#__nycc_venue_rates`;
 CREATE TABLE `#__nycc_venue_rates` (
@@ -61,7 +61,8 @@ CREATE TABLE `#__nycc_venue_rates` (
 	`active` BIGINT(20) UNSIGNED NOT NULL DEFAULT '1',
 	PRIMARY KEY (`id`)
 )
-	ENGINE=MyISAM;
+	ENGINE=MyISAM
+	COLLATE='utf8mb4_general_ci';
 
 DROP TABLE IF EXISTS `#__nycc_attendees`;
 CREATE TABLE `#_nycc_attendees` (
@@ -77,4 +78,38 @@ CREATE TABLE `#_nycc_attendees` (
 	`last_edited` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 )
-	ENGINE=InnoDB;
+	ENGINE=MyISAM
+	COLLATE='utf8mb4_general_ci';
+
+DROP TABLE IF EXISTS `#__nycc_registrations`;
+CREATE TABLE `#__nycc_registrations` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_id` BIGINT(20) UNSIGNED NOT NULL DEFAULT '0',
+	`session_id` VARCHAR(191) NOT NULL,
+	`venue_id` BIGINT(20) UNSIGNED NOT NULL,
+	`attendee_id` BIGINT(20) UNSIGNED NOT NULL,
+	`rate_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`rate_modifier` FLOAT(7,2) NOT NULL DEFAULT '0.00',
+	`base_fee` FLOAT(7,2) NOT NULL DEFAULT '0.00',
+	PRIMARY KEY (`id`)
+)
+	COLLATE='utf8mb4_general_ci'
+	ENGINE=MyISAM;
+
+DROP TABLE `#__nycc_users`;
+CREATE TABLE `#__nycc_users` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`first_name` VARCHAR(50) NOT NULL,
+	`last_name` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(100) NOT NULL,
+	`phone` VARCHAR(20) NOT NULL DEFAULT '',
+	`address1` VARCHAR(100) NOT NULL DEFAULT '',
+	`address2` VARCHAR(100) NOT NULL DEFAULT '',
+	`city` VARCHAR(50) NOT NULL DEFAULT '',
+	`state` VARCHAR(10) NOT NULL DEFAULT '',
+	`zip` VARCHAR(15) NOT NULL DEFAULT '',
+	`auth_token` VARCHAR(15) NOT NULL DEFAULT '',
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=MyISAM;
