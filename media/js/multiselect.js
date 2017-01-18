@@ -25,7 +25,7 @@
           $.makeArray(
               $parent.find('input[type="checkbox"]:checked')
                   .map(function (k,v) { return $(v).next('label').html(); })
-          ).join(', ');
+          ).join(', ')
       );
     });
   };
