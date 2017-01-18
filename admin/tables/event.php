@@ -18,6 +18,6 @@ defined('_JEXEC') or die('Restricted access');
 class NyccEventsTableEvent extends NyccEventsTableBaseTable {
 
   protected $_table_name = 'events';
-  protected $boolint_fields = array('active');
+  protected $_boolean_fields = array('active');
 
 }
