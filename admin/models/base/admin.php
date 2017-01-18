@@ -56,7 +56,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
      * @param   string $prefix The class prefix. Optional.
      * @param   array  $config Configuration array for model. Optional.
      *
-     * @return  JTable  A JTable object
+     * @return  NyccEventsTableBaseTable  A JTable object
      *
      * @since   0.0.1
      */
@@ -65,7 +65,7 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
             $type = $this->self_type->name;
         }
 
-        return JTable::getInstance($type, $prefix, $config)
+        return NyccEventsTableBaseTable::getInstance($type, $prefix, $config)
             ->setLookups($this->_lookups);
     }
 

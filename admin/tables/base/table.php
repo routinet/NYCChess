@@ -32,7 +32,7 @@ class NyccEventsTableBaseTable extends JTable {
      * @var array
      * @since 0.0.1
      */
-    protected $boolint_fields = array();
+    protected $_boolean_fields = array();
 
     /**
      * Holds definitions of lookups fields.  If not defined, a simple query is done
@@ -74,7 +74,7 @@ class NyccEventsTableBaseTable extends JTable {
      * @since version
      */
     protected function _convertBoolIntFields($src) {
-        foreach ($this->boolint_fields as $val) {
+        foreach ($this->_boolean_fields as $val) {
             if (!array_key_exists($val, $src)) {
                 $src[$val] = 0;
             }
