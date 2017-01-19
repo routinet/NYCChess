@@ -62,6 +62,7 @@
                 description="Full HTML describing event."
                 class="inputbox span12"
                 default=""
+                filter="safehtml"
         />
     </fieldset>
     <fieldset name="add_venues">
