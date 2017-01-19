@@ -143,4 +143,18 @@ abstract class NyccEventsModelBaseAdmin extends JModelAdmin {
         return $data;
     }
 
+    /**
+     * Override to unset lookup fields before attempting to save.
+     *
+     * @param \JTable $table
+     *
+     *
+     * @since 0.0.1
+     */
+    protected function prepareTable($table) {
+        foreach ($this->_lookups as $name => $def) {
+            $prop_name = "{$name}_{$def['lookup']}";
+            unset($table->$prop_name);
+        }
+    }
 }
