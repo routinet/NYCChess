@@ -13,24 +13,8 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Constants for custom objects
-define('NYCCEVENTS_LOAD_CHILDREN', 1);
-define('NYCCEVENTS_LOAD_RECURSIVE', 2);
-
-// Make sure jQuery is loaded.
-JHtml::_('jquery.framework');
-
-// Register the search path for objects
-JLoader::registerPrefix('NyccEventsObj', JPATH_COMPONENT . '/libraries');
-JLoader::registerPrefix('NyccEventsHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers');
-JLoader::registerPrefix('NyccEventsModel', JPATH_COMPONENT . '/models');
-JLoader::registerPrefix('NyccEventsTable', JPATH_COMPONENT_ADMINISTRATOR . '/tables');
-JForm::addFormPath(JPATH_COMPONENT . '/models/forms');
-JForm::addFieldPath(JPATH_COMPONENT . '/models/forms/fields');
-
-/*JFactory::getDocument()->addScript('/media/' . basename(JPATH_COMPONENT) . '/js/nycc-base.js');
-*/
-JFactory::getDocument()->addStyleSheet('/media/' . basename(JPATH_COMPONENT) . '/css/nycc-base.css');
+// Do component bootstrap.
+require_once 'init.php';
 
 // Get an instance of the controller
 $controller = JControllerLegacy::getInstance('NyccEvents');

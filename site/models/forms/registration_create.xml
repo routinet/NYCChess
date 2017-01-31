@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="create">
+        <field
+                name="saved_attendees"
+                type="sql"
+                label="Your previous attendees"
+                description="Select one of your previously saved attendees to auto-populate this form."
+                default="0"
+                key_field="id"
+                value_field="name"
+                sql_select="id,concat(first_name,last_name) as name"
+                sql_from="#__nycc_attendees"
+                sql_order="name ASC"
+                sql_filter="user_id"
+        />
+        <field name="id" type="hidden"/>
+        <field name="user_id" type="hidden"/>
+        <field name="attendee_id" type="hidden"/>
+        <field
+                name="attendee_first_name"
+                type="text"
+                label="First Name"
+                description="First name of the attendee"
+                size="15"
+                class="inputbox"
+                default=""
+        />
+        <field
+                name="attendee_last_name"
+                type="text"
+                label="Last Name"
+                description="Last name of the attendee"
+                size="25"
+                class="inputbox"
+                default=""
+        />
+        <field
+                name="attendee_grade"
+                type="list"
+                label="Grade"
+                description="The grade of the attendee"
+                multiple="false" default="">
+            <option value="">Select Grade</option>
+            <option value="-1">Not in School</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </field>
+        <field
+                name="attendee_school"
+                type="text"
+                label="School Name"
+                description="The name of the attendee's school"
+                size="25"
+                class="inputbox"
+                default=""
+        />
+        <field
+                name="attendee_uscf_id"
+                type="text"
+                label="USCF ID"
+                description="The attendee's USCF id, if available"
+                size="25"
+                class="inputbox"
+                default=""
+        />
+        <field
+                name="attendee_comments"
+                type="textarea"
+                label="Comments"
+                description="Any comments about this attendee"
+                rows="6"
+                cols="80"
+        />
+    </fieldset>
+</form>

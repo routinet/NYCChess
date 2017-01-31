@@ -7,14 +7,17 @@
  * @license     Commercial License Only
  */
 
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-/**
- * NYCC Registration Component Controller
- *
- * @since  0.0.1
- */
-class NyccEventsControllerRegistration extends JControllerLegacy {
+$doc = JFactory::getDocument();
 
-}
+?>
+<h1>Register for an Event</h1>
+</p>
+<pre><?php echo var_export($this->venue,1); ?></pre>
+<h1>Event</h1>
+<pre><?php echo var_export($this->event,1); ?></pre>
+<h1>Location</h1>
+<pre><?php echo var_export($this->location,1); ?></pre>
